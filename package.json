@@ -1,0 +1,20 @@
+{
+  "name": "@quiver/pixels",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/deltaepsilon/pixels.git",
+  "author": "Chris Esplin <chris@christopheresplin.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "docker-compose build",
+    "dev": "docker-compose build workspace && docker-compose run --service-ports --rm workspace zsh",
+    "connect": "docker exec -it workspace-pixels zsh",
+    "ci:login": "npx firebase login:ci --no-localhost",
+    "ci:build": "docker build --tag=pixels .",
+    "ci:interactive": "docker run -it --rm pixels sh",
+    "ci:pull": "docker pull us.gcr.io/quiver-pixels/pixels:latest",
+    "ci:latest": "docker run -it --rm us.gcr.io/quiver-pixels/pixels:latest sh",
+    "windows:watch": "powershell ./bin/watch.ps1"
+  }
+}
