@@ -1,0 +1,53 @@
+:root {
+  /* Fonts */
+  --font-book: azo-sans-web, sans-serif;
+  --font-bold: azo-sans-uber, sans-serif;
+
+  /* Borders */
+  --border-width: 4px;
+  --border-style: solid;
+  --border-color: black;
+  --border: var(--border-width) var(--border-style) var(--border-color);
+}
+
+/* Type */
+body,
+.text-book {
+  font-family: var(--font-book);
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.text-bold {
+  font-family: var(--font-bold);
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-size: 5vw;
+}
+
+@media (max-width: 300px) {
+  body {
+    font-size: calc(300px * 0.05);
+  }
+}
+
+@media (min-width: 500px) {
+  body {
+    font-size: calc(500px * 0.05);
+  }
+}
+
+
+/* Global */
+body {
+  margin: 0;
+}

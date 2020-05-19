@@ -1,0 +1,17 @@
+#top-bar {
+  display: flex;
+
+  border: var(--border);
+  border-width: 0 0 var(--border-width) 0;
+  padding: 0.5em;
+}
+
+#top-bar #logo {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+#top-bar h1 {
+  margin: 0;
+}
