@@ -6,6 +6,7 @@ steps:
     args: ['yarn', 'ci:config']
     env:
       - 'SERVICE_ACCOUNT_BASE64=$_SERVICE_ACCOUNT_BASE64'
+      - 'GOOGLE_APPLICATION_CREDENTIALS=$_GOOGLE_APPLICATION_CREDENTIALS'
   - name: 'us.gcr.io/$PROJECT_ID/pixels:latest'
     dir: '/app'
     args: ['yarn', 'ci:deploy']
