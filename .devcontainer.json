@@ -11,8 +11,8 @@
     "toba.vsfire"
   ],
   "search.exclude": {
-    "**/.next": true,
-    "**/.firebase": true,
-    "**/out": true
+    "**/**/.next": true,
+    "**/**/.firebase": true,
+    "**/**/out": true
   }
 }

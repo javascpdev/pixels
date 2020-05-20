@@ -1,0 +1,99 @@
+.drawer {
+  border-right: none;
+  max-width: 0;
+  transition: max-width 300ms ease;
+}
+
+.drawer a {
+  text-decoration: none;
+}
+
+.drawer hr {
+  width: 100%;
+  border-color: var(--color-gray-light);
+  border-width: 1px 0 0 0;
+}
+
+.isOpen .shade {
+  display: block;
+  background: var(--color-shade-background);
+  position: fixed;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .drawer.isOpen {
+    width: 100vw !important;
+    max-width: 100vw;
+  }
+}
+
+@media (min-width: 1025px) {
+  .drawer.isOpen {
+    width: 33vw !important;
+    max-width: 500px;
+  }
+}
+
+.closeButton {
+  margin: 1rem 0 0 -1px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  padding-top: 1rem;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 0 0 0 1rem;
+  max-width: calc(100% - 4rem);
+}
+
+.title,
+.subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title {
+  margin: 0 0 0.25rem 0;
+}
+
+.title a {
+  text-decoration: underline;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+}
+
+.prompt {
+  text-decoration: underline !important;
+}
+
+.userIconWrapper {
+  width: 3rem;
+  height: 3rem;
+}
+
+.userIconWrapper button {
+  background-color: var(--color-dark-background) !important;
+  border-radius: 50%;
+  background-size: cover !important;
+}

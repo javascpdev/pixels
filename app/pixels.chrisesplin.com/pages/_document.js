@@ -24,10 +24,10 @@ export default class CustomDocument extends Document {
         </Head>
         <body>
           <div id="top-bar">
-            <div id="logo" />
             <div id="back-button" />
+            <div id="logo" />
             <div id="title" />
-            <div id="user-menu" />
+            <div id="menu" />
           </div>
           <div id="modal" />
           <div id="right-drawer" />

@@ -1,0 +1,11 @@
+.toolkit a,
+.toolkit a:visited {
+  color: var(--mdc-theme-primary-text);
+  text-decoration: none;
+}
+
+.toolkit div {
+  border: var(--border);
+  padding: 1em;
+  text-align: center;
+}

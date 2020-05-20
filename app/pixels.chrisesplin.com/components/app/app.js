@@ -1,9 +1,16 @@
+import Authorization from './authorization';
+import Firebase from './firebase';
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 
-export default function App({ children }) {
+export default function App({ children, secure }) {
   return (
     <>
-      <div id="app">{children}</div>
+      <Firebase />
+      <RecoilRoot>
+        <Authorization secure={secure} />
+        <div id="app">{children}</div>
+      </RecoilRoot>
     </>
   );
 }

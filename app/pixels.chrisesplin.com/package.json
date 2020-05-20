@@ -4,12 +4,24 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && next export",
+    "deploy": "firebase deploy --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
+    "deploy:hosting": "firebase deploy --only hosting --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT"
   },
   "dependencies": {
+    "@rmwc/button": "^6.0.14",
+    "@rmwc/drawer": "^6.0.14",
+    "@rmwc/icon-button": "^6.0.14",
+    "@rmwc/list": "^6.0.14",
+    "classnames": "^2.2.6",
+    "immer": "^6.0.5",
+    "localforage": "^1.7.3",
     "next": "9.4.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "recoil": "^0.0.7"
+  },
+  "devDependencies": {
+    "firebase-tools": "^8.3.0"
   }
 }

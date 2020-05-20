@@ -1,0 +1,1 @@
+npx firebase init --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT

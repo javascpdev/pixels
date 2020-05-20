@@ -1,4 +1,21 @@
 :root {
+  /* MDC */
+  --mdc-theme-primary: black !important;
+  --mdc-theme-primary-light: slategray;
+  --mdc-theme-primary-dark: black;
+  --mdc-theme-primary-text: black;
+
+  --mdc-theme-secondary: steelblue !important;
+  --mdc-theme-secondary-light: lightsteelblue;
+  --mdc-theme-secondary-dark: royalblue;
+  --mdc-theme-secondary-text: white;
+
+  /* Colors */
+  --color-dark-background: dimgray;
+  --color-light-background: white;
+  --color-google: #db4437;
+  --color-facebook: #3c5a99;
+
   /* Fonts */
   --font-book: azo-sans-web, sans-serif;
   --font-bold: azo-sans-uber, sans-serif;
@@ -46,8 +63,36 @@ body {
   }
 }
 
-
 /* Global */
 body {
   margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 4em);
+}
+
+#right-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+
+  background: var(--color-light-background);
+  border: none;
+}
+
+/* MDC */
+.mdc-button .mdc-button__ripple {
+  border-radius: 0 !important;
+}
+
+.mdc-button--outlined:not(:disabled) {
+  border-radius: 0;
+  border-color: var(--border-color) !important;
 }

@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 5em;
+  padding: 2em;
+}
+
+.wrapper button {
+  width: 100%;
+}
+
+.google {
+  background-color: var(--color-google) !important;
+}
+
+.facebook {
+  background-color: var(--color-facebook) !important;
+}

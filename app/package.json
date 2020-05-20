@@ -4,6 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "cd pixels.chrisesplin.com && yarn dev"
+    "build": "cd pixels.chrisesplin.com && yarn build",
+    "deploy": "cd pixels.chrisesplin.com && yarn deploy"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "firebase-tools": "^8.3.0"
   }
 }
