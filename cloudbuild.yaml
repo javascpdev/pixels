@@ -5,7 +5,7 @@ steps:
     dir: '/app'
     args: ['yarn', 'ci:config']
     env:
-      - 'SOME_KEY=$_SOME_KEY'
+      - 'SERVICE_ACCOUNT_BASE64=$_SERVICE_ACCOUNT_BASE64'
   - name: 'us.gcr.io/$PROJECT_ID/pixels:latest'
     dir: '/app'
     args: ['yarn', 'ci:deploy']

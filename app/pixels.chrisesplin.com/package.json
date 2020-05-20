@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
+    "export": "next export",
     "deploy": "firebase deploy --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
-    "deploy:hosting": "firebase deploy --only hosting --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT"
+    "deploy:hosting": "firebase deploy --only hosting --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
+    "_": ""
   },
   "dependencies": {
     "@rmwc/button": "^6.0.14",

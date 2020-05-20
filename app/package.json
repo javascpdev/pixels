@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "cd pixels.chrisesplin.com && yarn build",
-    "deploy": "cd pixels.chrisesplin.com && yarn deploy"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "firebase-tools": "^8.3.0"
+    "build": "cd /app/pixels.chrisesplin.com && yarn build",
+    "export": "cd /app/pixels.chrisesplin.com && yarn export",
+    "deploy": "cd /app/pixels.chrisesplin.com && yarn deploy",
+    "ci:build": "yarn build && yarn export",
+    "ci:config": "yarn ci:service-account",
+    "ci:deploy": "yarn deploy",
+    "ci:service-account": "echo $SERVICE_ACCOUNT_BASE64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS && echo ",
+    "_": ""
   }
 }
