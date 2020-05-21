@@ -5,6 +5,9 @@ import produce from 'immer';
 export const getLoginRedirect = createGetter(constants.LOCALFORAGE.LOGIN_REDIRECT);
 export const setLoginRedirect = createSetter(constants.LOCALFORAGE.LOGIN_REDIRECT);
 
+export const getUserOAuth2 = createGetter(constants.LOCALFORAGE.OAUTH2);
+export const setUserOAuth2 = createSetter(constants.LOCALFORAGE.OAUTH2);
+
 function createArrayItemGetter(key) {
   const getter = createGetter(key);
 

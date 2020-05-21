@@ -15,6 +15,7 @@ export default {
   },
   LOCALFORAGE: {
     LOGIN_REDIRECT: `${LOCALFORAGE_PREFIX}-login-redirect`,
+    OAUTH2: `${LOCALFORAGE_PREFIX}-oauth2`,
   },
   META: {
     TITLES: {
@@ -24,6 +25,11 @@ export default {
     THEME_COLOR: 'black',
     ICON_URLS: {
       LARGE: '/images/icons/icon-512.png',
+    },
+  },
+  OAUTH2: {
+    IMGUR: {
+      SERVICE_ID: 'imgur',
     },
   },
   ROUTES: {
@@ -37,6 +43,8 @@ export default {
     TOOLKIT: {
       IMGUR: {
         ROOT: '/toolkit/imgur',
+        AUTHORIZE: ({ clientId, uid }) =>
+          `https://api.imgur.com/oauth2/authorize?client_id=${clientId}&response_type=token&state=${uid}`,
       },
     },
   },

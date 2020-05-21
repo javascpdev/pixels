@@ -68,6 +68,11 @@ body {
   margin: 0;
 }
 
+a,
+a:visited {
+  color: var(--mdc-theme-primary-text);
+}
+
 #app {
   display: flex;
   flex-direction: column;

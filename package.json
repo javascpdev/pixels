@@ -13,8 +13,8 @@
     "ci:login": "npx firebase login:ci --no-localhost",
     "ci:build": "docker build --tag=pixels .",
     "ci:interactive": "docker run -it --rm pixels sh",
-    "ci:pull": "docker pull us.gcr.io/quiver-pixels/pixels:latest",
-    "ci:latest": "docker run -it --rm us.gcr.io/quiver-pixels/pixels:latest sh",
+    "ci:pull": "docker pull us.gcr.io/quiver-pixels-2020/pixels:latest",
+    "ci:latest": "docker run -it --rm us.gcr.io/quiver-pixels-2020/pixels:latest sh",
     "windows:watch": "powershell ./bin/watch.ps1"
   }
 }

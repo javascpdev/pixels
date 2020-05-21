@@ -1,0 +1,35 @@
+.progressButton .progressBar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.progressButton[data-is-indeterminate='true'] {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+  color: rgba(0, 0, 0, 0.37) !important;
+  cursor: default;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.progressButton[data-is-indeterminate='true'] .progressBar {
+  background: rgba(0, 0, 0, 0.5);
+
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-name: progressButtonIndeterminate;
+}
+
+@keyframes progressButtonIndeterminate {
+  from {
+    right: 100%;
+    left: -30%;
+  }
+
+  to {
+    right: -30%;
+    left: 100%;
+  }
+}

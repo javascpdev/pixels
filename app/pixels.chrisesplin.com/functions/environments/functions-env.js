@@ -11,14 +11,21 @@ if (!process.env.GCLOUD_PROJECT) {
 const functions = require('firebase-functions');
 let config = functions.config();
 
-if (!config.some_environment) {
-  config.some_environment = {
-    some_key: 'some value',
+if (!config.imgur) {
+  config.imgur = {
+    client_id: process.env.IMGUR_CLIENT_ID,
+    client_secret: process.env.IMGUR_CLIENT_SECRET,
   };
 }
 
 module.exports = {
-  SOME_ENVIRONMENT: {
-    some_key: config.some_environment.some_key,
+  IMGUR: {
+    CLIENT_ID: config.imgur.client_id,
+    CLIENT_SECRET: config.imgur.client_secret,
+    AUTH_URL: 'https://api.imgur.com/oauth2/authorize',
+    ACCESS_TOKEN_URL: 'https://api.imgur.com/oauth2/token',
+    ROUTES: {
+      AUTHORIZE: `https://api.imgur.com/oauth2/authorize?client_id=${config.imgur.client_id}&response_type=token&state=APPLICATION_STATE`,
+    },
   },
 };
