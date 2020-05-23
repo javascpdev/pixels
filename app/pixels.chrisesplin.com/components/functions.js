@@ -1,7 +1,7 @@
 /* globals window */
 export default {
-  sampleFunc: function sampleFunc(arg) {
-    return functions().httpsCallable('sampleFunc')(arg);
+  imgurRefreshOAuth2: function imgurRefreshOAuth2(arg) {
+    return functions().httpsCallable('imgurRefreshOAuth2')(arg);
   },
 };
 

@@ -1,6 +1,30 @@
-.connectPrompt {
+.wrapper {
+  width: var(--dimensions-max-width);
+  min-height: var(--dimensions-min-height);
 }
 
 .buttonLink {
   text-decoration: none;
+}
+
+.imageGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+
+  width: calc(100% + 1em);
+}
+
+.imageGrid img {
+  display: block;
+
+  width: 250px;
+  height: 250px;
+
+  margin: 0.5em;
+
+  background-position: center;
+  background-size: cover;
 }

@@ -46,7 +46,7 @@ function HandleCallback({
 
   useEffect(() => {
     (async () => {
-      await effects.updateOAuth2({
+      await effects.setOAuth2({
         record,
         serviceId: constants.OAUTH2.IMGUR.SERVICE_ID,
         uid,

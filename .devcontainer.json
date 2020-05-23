@@ -11,8 +11,8 @@
     "toba.vsfire"
   ],
   "search.exclude": {
-    "**/**/.next": true,
-    "**/**/.firebase": true,
-    "**/**/out": true
+    "pixels.chrisesplin.com/.next": true,
+    "pixels.chrisesplin.com/.firebase": true,
+    "pixels.chrisesplin.com/out": true
   }
 }

@@ -1,0 +1,14 @@
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/root/.cache/firebase/emulators/firebase-database-emulator-v4.4.1.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+15:07:23.923 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+15:07:24.038 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+15:07:27.581 [NamespaceSystem-akka.actor.default-dispatcher-5] WARN com.firebase.server.forge.App$ - Received service account token ya29...4UF2, assuming ownership.
+15:07:29.618 [NamespaceSystem-akka.actor.default-dispatcher-5] WARN com.firebase.server.forge.App$ - Received service account token ya29...LbWn, assuming ownership.
+15:07:30.563 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+15:07:30.572 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: quiver-pixels-2020
+15:07:30.576 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for quiver-pixels-2020
+15:07:30.576 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for quiver-pixels-2020
+15:07:30.579 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

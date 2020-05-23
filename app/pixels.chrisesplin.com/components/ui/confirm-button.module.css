@@ -1,0 +1,4 @@
+.confirmButton[data-is-confirming='true']:not([disabled]) {
+  background-color: var(--color-warning) !important;
+  color: var(--mdc-theme-secondary-text) !important;
+}

@@ -1,9 +1,11 @@
 /* globals window */
 
-import updateOAuth2 from './update-oauth2';
+import deleteOAuth2 from './delete-oauth2';
+import setOAuth2 from './set-oauth2';
 
 export default {
-  updateOAuth2: wrapEffect(updateOAuth2),
+  deleteOAuth2: wrapEffect(deleteOAuth2),
+  setOAuth2: wrapEffect(setOAuth2),
 };
 
 function wrapEffect(effect) {

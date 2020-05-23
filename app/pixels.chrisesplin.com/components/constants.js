@@ -16,6 +16,10 @@ export default {
   LOCALFORAGE: {
     LOGIN_REDIRECT: `${LOCALFORAGE_PREFIX}-login-redirect`,
     OAUTH2: `${LOCALFORAGE_PREFIX}-oauth2`,
+    IMGUR: {
+      ALBUMS: `${LOCALFORAGE_PREFIX}-imgur-albums`,
+      IMAGES: `${LOCALFORAGE_PREFIX}-imgur-images`,
+    },
   },
   META: {
     TITLES: {
@@ -30,6 +34,7 @@ export default {
   OAUTH2: {
     IMGUR: {
       SERVICE_ID: 'imgur',
+      EXPIRED_MILLIS: 1000 * 60 * 60 * 24 * 1,
     },
   },
   ROUTES: {
@@ -45,6 +50,10 @@ export default {
         ROOT: '/toolkit/imgur',
         AUTHORIZE: ({ clientId, uid }) =>
           `https://api.imgur.com/oauth2/authorize?client_id=${clientId}&response_type=token&state=${uid}`,
+        ALBUMS: ({ username, page }) =>
+          `https://api.imgur.com/3/account/${username}/albums/${page}`,
+        IMAGES: ({ username, page }) =>
+          `https://api.imgur.com/3/account/${username}/images/${page}`,
       },
     },
   },

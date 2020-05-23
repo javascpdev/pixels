@@ -13,6 +13,7 @@
   /* Colors */
   --color-dark-background: dimgray;
   --color-light-background: white;
+  --color-warning: crimson;
   --color-google: #db4437;
   --color-facebook: #3c5a99;
 
@@ -25,6 +26,10 @@
   --border-style: solid;
   --border-color: black;
   --border: var(--border-width) var(--border-style) var(--border-color);
+
+  /* Dimensions */
+  --dimensions-max-width: calc(100vw - 4em);
+  --dimensions-min-height: calc(100vh - 4em);
 }
 
 /* Type */
@@ -73,6 +78,12 @@ a:visited {
   color: var(--mdc-theme-primary-text);
 }
 
+hr {
+  border-color: var(--border-color);
+  border-style: var(--border-style);
+  border-width: var(--border-width) 0 0 0;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -90,6 +101,22 @@ a:visited {
 
   background: var(--color-light-background);
   border: none;
+}
+
+.spinning {
+  animation-name: spinning;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* MDC */

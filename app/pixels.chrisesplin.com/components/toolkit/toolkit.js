@@ -13,7 +13,10 @@ export default function Toolkit({ children, src, title }) {
       <Logo src={src} />
       <Menu />
       <Title title={title} />
-      <div className={styles.toolkit}>{children}</div>
+      <div className={styles.toolkit}>
+        <menu id="toolkit-menu" />
+        <div id="toolkit-body">{children}</div>
+      </div>
     </>
   );
 }

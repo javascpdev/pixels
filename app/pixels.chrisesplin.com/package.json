@@ -9,8 +9,10 @@
     "deploy": "firebase deploy --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:hosting": "firebase deploy --only hosting --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:firestore": "firebase deploy --only firestore --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
+    "deploy:functions": "firebase deploy --only functions --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:functions:config": "firebase functions:config:set imgur.client_id=$IMGUR_CLIENT_ID imgur.client_secret=$IMGUR_CLIENT_SECRET --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "serve:https": "nodemon functions/serve-https",
+    "test:imgur": "firebase emulators:exec functions/src/https/on-call/imgur-refresh-oauth2.on-call.test.sh",
     "_": ""
   },
   "dependencies": {
@@ -19,6 +21,7 @@
     "@rmwc/icon-button": "^6.0.14",
     "@rmwc/linear-progress": "^6.0.14",
     "@rmwc/list": "^6.0.14",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "immer": "^6.0.5",
     "localforage": "^1.7.3",
