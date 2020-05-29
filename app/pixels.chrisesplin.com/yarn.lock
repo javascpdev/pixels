@@ -1027,6 +1027,18 @@
     "@material/touch-target" "^5.1.0"
     "@material/typography" "^5.1.0"
 
+"@material/card@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/card/-/card-5.1.0.tgz#db3e0b52b09e832cb39f81e9384b792e33c24104"
+  integrity sha512-/syao6oR/PAvzs04quybeCWHZVn4W2dNnxIOWIJTRQced0/o3gYrHgQSX+edC+6pEnSr3Drwbo2cye7nRdbixA==
+  dependencies:
+    "@material/elevation" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+
 "@material/density@^5.1.0":
   version "5.1.0"
   resolved "https://registry.npmjs.org/@material/density/-/density-5.1.0.tgz#d36512d413a00595122f98303766dae6b9e9fabe"
@@ -1072,6 +1084,20 @@
   resolved "https://registry.npmjs.org/@material/feature-targeting/-/feature-targeting-5.1.0.tgz#49265bbd4ff59b1cd20a385b5547f7c246cb1955"
   integrity sha512-z3JNWF7lP9WOzw1xBwul/HAOu4qC6EpK/8MkhjLNI9APvdYML82PWS1V0k0MiqA6Jk6uxm8DiVAk9VUqBa9/YA==
 
+"@material/floating-label@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/floating-label/-/floating-label-5.1.0.tgz#8d654b3f2ca98248e5a73a63feec8f4523c5ab4f"
+  integrity sha512-5EwPiBa5A4Q678tNWdkkBGDdSCDzudhVgBtRiA/7xRo4dHXiBxX5bhE+RHrF3ZQyEf6fsShspqwAFkTA1EaplQ==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/typography" "^5.1.0"
+    tslib "^1.9.3"
+
 "@material/icon-button@^5.1.0":
   version "5.1.0"
   resolved "https://registry.npmjs.org/@material/icon-button/-/icon-button-5.1.0.tgz#224c5607ca272feac41ec223816ee1233fb2b018"
@@ -1081,6 +1107,17 @@
     "@material/density" "^5.1.0"
     "@material/feature-targeting" "^5.1.0"
     "@material/ripple" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    tslib "^1.9.3"
+
+"@material/line-ripple@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/line-ripple/-/line-ripple-5.1.0.tgz#86cb1b8a91bf010231109211b8eb38ad059f5f23"
+  integrity sha512-esf2/ROZl1eVpyGCWPvxMSGVkuIOG5Fm6qufOLp7XIx5IL1O0bsm+bV6cVC4JCCtmNOag4GOBgkKKbkOvp/R6g==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
     "@material/theme" "^5.1.0"
     tslib "^1.9.3"
 
@@ -1112,6 +1149,49 @@
     "@material/typography" "^5.1.0"
     tslib "^1.9.3"
 
+"@material/menu-surface@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/menu-surface/-/menu-surface-5.1.0.tgz#008dc61e79f73deec3e56b9fdbba164ccec13759"
+  integrity sha512-8EqkrKP92O4xaPVItz2841OfmuH3zyCclU1iC0NSBa39MwmYt7ML3IEaOXwOzKlcNGOcC7qPeqcpYlUsfMYX3g==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/elevation" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    tslib "^1.9.3"
+
+"@material/menu@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/menu/-/menu-5.1.0.tgz#28794c1be742a227e1e20f3bdddc896178890ebe"
+  integrity sha512-ssJNcbdyLewgL7hnj4C7JeXO3GvV4G2i1//Ych2s+au7AcJ/6/YeTTKhiCkoSpS7pb7axB3dMKwQWor2glec5Q==
+  dependencies:
+    "@material/base" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/elevation" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/list" "^5.1.0"
+    "@material/menu-surface" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    tslib "^1.9.3"
+
+"@material/notched-outline@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/notched-outline/-/notched-outline-5.1.0.tgz#4ec97001ed6bbb66f04100b7745ae99d19a4d16e"
+  integrity sha512-mQ3NjJR1jLXnJi6jhs20ftTf0yU1gWpYlyx1GizU0f7pLEqcIrFnw6G+pavcnKqP+JXNkzAQeGbmZvYBQnxokA==
+  dependencies:
+    "@material/base" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/floating-label" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    tslib "^1.9.3"
+
 "@material/progress-indicator@^5.1.0":
   version "5.1.0"
   resolved "https://registry.npmjs.org/@material/progress-indicator/-/progress-indicator-5.1.0.tgz#d7885c4d2de7d3c9c0951bf19cc4bb6344d75cab"
@@ -1136,6 +1216,25 @@
   resolved "https://registry.npmjs.org/@material/rtl/-/rtl-5.1.0.tgz#abd8c2bb5322b8fbe549e2f467791612720da746"
   integrity sha512-Hij4KJIfjK63HArdQ3K1INMo0MbigDgL0JhjO1VDk5c+iYmYpjDI7wgPLmV5ISCBtenXRWpo1xbBO3uEmtCd4Q==
 
+"@material/select@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/select/-/select-5.1.0.tgz#c6106e3e4f27f3670be089ceddb030aead936ffc"
+  integrity sha512-AAXscWDMjpVfO91VYKhxdP8XTyZ6fJFNFEgL0lxccvRqU8qFt5cPQ+7W1IgMWYdrnvHhANa8DLTrpnepSq4irQ==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/floating-label" "^5.1.0"
+    "@material/line-ripple" "^5.1.0"
+    "@material/menu" "^5.1.0"
+    "@material/menu-surface" "^5.1.0"
+    "@material/notched-outline" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/typography" "^5.1.0"
+    tslib "^1.9.3"
+
 "@material/shape@^5.1.0":
   version "5.1.0"
   resolved "https://registry.npmjs.org/@material/shape/-/shape-5.1.0.tgz#155d01c6fdc90a9225fef297fe146c1946a6c147"
@@ -1143,6 +1242,26 @@
   dependencies:
     "@material/feature-targeting" "^5.1.0"
     "@material/rtl" "^5.1.0"
+
+"@material/textfield@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/textfield/-/textfield-5.1.0.tgz#75f68c62dc916116330a4c958ba3866c87bd6002"
+  integrity sha512-Vipvw75AXj4G/BGXv3DyrGozbvHxGtcNGig1e5pz1ERvcmZN5epLyGStznxEIZYNf0Q+6O/NwSRxZGgrdI2w8w==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/density" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/floating-label" "^5.1.0"
+    "@material/line-ripple" "^5.1.0"
+    "@material/notched-outline" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/typography" "^5.1.0"
+    tslib "^1.9.3"
 
 "@material/theme@^5.1.0":
   version "5.1.0"
@@ -1266,12 +1385,33 @@
     "@rmwc/ripple" "^6.0.14"
     "@rmwc/types" "^6.0.5"
 
+"@rmwc/card@^6.0.14":
+  version "6.0.14"
+  resolved "https://registry.npmjs.org/@rmwc/card/-/card-6.0.14.tgz#c312e078eba4a9b02691d613ad5c738b1ea7b7d8"
+  integrity sha512-UUu2GVSnbqzpzhLUBHZgZip6/Mi7izrAuT47ayvRWkdZrZ8M1FjnQzsTdhHp9qrQHWLulkkoanieQaesqYh0Pg==
+  dependencies:
+    "@material/card" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/button" "^6.0.14"
+    "@rmwc/icon-button" "^6.0.14"
+    "@rmwc/ripple" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
 "@rmwc/drawer@^6.0.14":
   version "6.0.14"
   resolved "https://registry.npmjs.org/@rmwc/drawer/-/drawer-6.0.14.tgz#01b61597b8b0438d26887a45749296be86fe0d5a"
   integrity sha512-sfA5IduZZ4AjhxyJsJHYYqmwuAYRYAhfn+7Zx8YLmZfat98Q/bu2D5mAbVcSerhSd1myW0nS7yfZuQR7YZp2dA==
   dependencies:
     "@material/drawer" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
+"@rmwc/floating-label@^6.0.14":
+  version "6.0.14"
+  resolved "https://registry.npmjs.org/@rmwc/floating-label/-/floating-label-6.0.14.tgz#4bf3058eed8e4dfa7de01ecb9f0370a922483c66"
+  integrity sha512-SX9LydoINmCSRQEmrPe1AvtAhe/eSH7HqjNxFsuXAvf5HHzwgcUgLlHcW45v+1iUnSREPCkSGO6M6jJbxR51KQ==
+  dependencies:
+    "@material/floating-label" "^5.1.0"
     "@rmwc/base" "^6.0.14"
     "@rmwc/types" "^6.0.5"
 
@@ -1295,6 +1435,15 @@
     "@rmwc/provider" "^6.0.14"
     "@rmwc/types" "^6.0.5"
 
+"@rmwc/line-ripple@^6.0.14":
+  version "6.0.14"
+  resolved "https://registry.npmjs.org/@rmwc/line-ripple/-/line-ripple-6.0.14.tgz#09799991a6dd650e053f28945e55ce668daac8e7"
+  integrity sha512-BqJ6Gq823LKVP7kPPWvwQiX0hzqArtDSXeqTH93SrT1kpGs3m69mGL+/8uayHMKa/8osC1dQ8Q/iGozqqA5yFg==
+  dependencies:
+    "@material/line-ripple" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
 "@rmwc/linear-progress@^6.0.14":
   version "6.0.14"
   resolved "https://registry.npmjs.org/@rmwc/linear-progress/-/linear-progress-6.0.14.tgz#9cc30feb0dcf63da0f2095c17da3d3e360456ec1"
@@ -1316,6 +1465,26 @@
     "@rmwc/ripple" "^6.0.14"
     "@rmwc/types" "^6.0.5"
 
+"@rmwc/menu@^6.0.14":
+  version "6.0.14"
+  resolved "https://registry.npmjs.org/@rmwc/menu/-/menu-6.0.14.tgz#898c9fa38e961d17b562849a59b3af683ebe0a58"
+  integrity sha512-yN55qfGlKDcXB3KetdF6J+vbLzLeFeHN+jTXIP+XXq2MNYEpn/x0bByQnO65yQ/P+44MAbrrbDlB10YCg/Fehw==
+  dependencies:
+    "@material/menu" "^5.1.0"
+    "@material/menu-surface" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/list" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
+"@rmwc/notched-outline@^6.0.14":
+  version "6.0.14"
+  resolved "https://registry.npmjs.org/@rmwc/notched-outline/-/notched-outline-6.0.14.tgz#9ef203dada8ca903ad0a29d06d8564c8d02ea46a"
+  integrity sha512-kylokye/R8Hc6xseDwPZzwIZXkwnEb9Ee0vh1wwFUS8FzfzeNGtwbExxE/Pnduz5BYmAQvZMrqoF+76BOQ7uzQ==
+  dependencies:
+    "@material/notched-outline" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
 "@rmwc/provider@^6.0.14":
   version "6.0.14"
   resolved "https://registry.npmjs.org/@rmwc/provider/-/provider-6.0.14.tgz#df6267d92fbe4a3f561726e2904963857aba42ce"
@@ -1332,6 +1501,36 @@
     "@material/ripple" "^5.1.0"
     "@rmwc/base" "^6.0.14"
     "@rmwc/provider" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
+"@rmwc/select@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@rmwc/select/-/select-6.1.0.tgz#f22f25cf7e81535a712a24b651d8a4b4fcbad7e5"
+  integrity sha512-+cgi9ujGTrbYtgUomyP+h9ViHBUpHx//dKe7qhMKUNDDbbseJBE0Jrbu0SSF01ELwGrC/bqA/VSblTplXSxwVA==
+  dependencies:
+    "@material/select" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/floating-label" "^6.0.14"
+    "@rmwc/icon" "^6.0.14"
+    "@rmwc/line-ripple" "^6.0.14"
+    "@rmwc/list" "^6.0.14"
+    "@rmwc/menu" "^6.0.14"
+    "@rmwc/notched-outline" "^6.0.14"
+    "@rmwc/ripple" "^6.0.14"
+    "@rmwc/types" "^6.0.5"
+
+"@rmwc/textfield@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/@rmwc/textfield/-/textfield-6.1.0.tgz#8fc40cc7db0a489826563a307531c2c2559cc26f"
+  integrity sha512-jRnPolOSXJaP8lOLpPouKfHJ4hJjPY26qRwOao8Jrhj73GlsQoAHdHMY2u7brAKGQ0qYyDfRj+FJFgHqwxIyNw==
+  dependencies:
+    "@material/textfield" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/floating-label" "^6.0.14"
+    "@rmwc/icon" "^6.0.14"
+    "@rmwc/line-ripple" "^6.0.14"
+    "@rmwc/notched-outline" "^6.0.14"
+    "@rmwc/ripple" "^6.0.14"
     "@rmwc/types" "^6.0.5"
 
 "@rmwc/types@^6.0.5":
@@ -8862,6 +9061,11 @@ uuid@^3.0.0, uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.npmjs.org/uuid/-/uuid-8.1.0.tgz#6f1536eb43249f473abc6bd58ff983da1ca30d8d"
+  integrity sha512-CI18flHDznR0lq54xBycOVmphdCYnQLKn8abKn7PXUiKUGdEd+/l9LWNJmugXel4hXq7S+RMNl34ecyC9TntWg==
 
 valid-url@^1:
   version "1.0.9"

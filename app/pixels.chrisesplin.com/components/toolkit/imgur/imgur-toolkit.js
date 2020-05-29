@@ -1,13 +1,15 @@
-import { PowerOffSvg, RefreshSvg } from '~/svg';
+import { CloudUploadSvg, PowerOffSvg, RefreshSvg } from '~/svg';
 import React, { useCallback, useMemo } from 'react';
 
 import { IconButton } from '@rmwc/icon-button';
+import ImgurAlbums from './imgur-albums';
 import ImgurAlbumsProvider from '~/contexts/imgur-albums-context';
 import ImgurConnectPrompt from './imgur-connect-prompt';
 import ImgurImages from './imgur-images';
 import ImgurImagesProvider from '~/contexts/imgur-images-context';
 import ReactDOM from 'react-dom';
 import Toolkit from '../toolkit';
+import Uploader from '~/ui/uploader';
 import UserOAuth2Provider from '~/contexts/user-oauth2-context';
 import classnames from 'classnames';
 import constants from '~/constants';
@@ -71,7 +73,18 @@ function ImgurToolkit() {
         refreshClassName={refreshClassName}
       />
 
-      <ImgurImages images={images} />
+      {albums.length && (
+        <>
+          <h3>Albums</h3>
+          <ImgurAlbums albums={albums} />
+        </>
+      )}
+      {images.length && (
+        <>
+          <h3>Images</h3>
+          <ImgurImages images={images} />
+        </>
+      )}
     </div>
   );
 }
@@ -79,6 +92,9 @@ function ImgurToolkit() {
 function ImgurToolkitMenu({ refresh, refreshClassName, deleteOAuth2 }) {
   return ReactDOM.createPortal(
     <>
+      <Uploader>
+        <IconButton icon={<CloudUploadSvg />} />
+      </Uploader>
       <IconButton icon={<PowerOffSvg />} onClick={deleteOAuth2} />
       <IconButton icon={<RefreshSvg className={refreshClassName} />} onClick={refresh} />
     </>,

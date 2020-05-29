@@ -17,10 +17,13 @@
   },
   "dependencies": {
     "@rmwc/button": "^6.0.14",
+    "@rmwc/card": "^6.0.14",
     "@rmwc/drawer": "^6.0.14",
     "@rmwc/icon-button": "^6.0.14",
     "@rmwc/linear-progress": "^6.0.14",
     "@rmwc/list": "^6.0.14",
+    "@rmwc/select": "^6.1.0",
+    "@rmwc/textfield": "^6.1.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "immer": "^6.0.5",
@@ -28,7 +31,8 @@
     "next": "9.4.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "recoil": "^0.0.7"
+    "recoil": "^0.0.7",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "firebase-tools": "^8.3.0",

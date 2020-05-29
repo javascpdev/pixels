@@ -19,6 +19,7 @@ export default {
     IMGUR: {
       ALBUMS: `${LOCALFORAGE_PREFIX}-imgur-albums`,
       IMAGES: `${LOCALFORAGE_PREFIX}-imgur-images`,
+      BASE64_UPLOAD: `${LOCALFORAGE_PREFIX}-imgur-base64-upload`,
     },
   },
   META: {
@@ -50,10 +51,13 @@ export default {
         ROOT: '/toolkit/imgur',
         AUTHORIZE: ({ clientId, uid }) =>
           `https://api.imgur.com/oauth2/authorize?client_id=${clientId}&response_type=token&state=${uid}`,
+        ALBUM: 'https://api.imgur.com/3/album',
         ALBUMS: ({ username, page }) =>
           `https://api.imgur.com/3/account/${username}/albums/${page}`,
+        IMAGE: 'https://api.imgur.com/3/image',
         IMAGES: ({ username, page }) =>
           `https://api.imgur.com/3/account/${username}/images/${page}`,
+        UPLOAD: '/toolkit/imgur/upload',
       },
     },
   },

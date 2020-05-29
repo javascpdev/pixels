@@ -31,6 +31,7 @@ export default class CustomDocument extends Document {
           </div>
           <div id="modal" />
           <div id="right-drawer" />
+          <div id="uploader" />
           <Main />
           <footer id="footer" />
           <NextScript />

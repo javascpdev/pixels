@@ -1,0 +1,11 @@
+.preview {
+  max-width: 100%;
+  max-height: calc(100vh - 5em);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2em;
+  width: 100%;
+}

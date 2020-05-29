@@ -13,10 +13,24 @@ export const ImgurImagesContext = React.createContext();
 
 export default function ImgurImagesProvider({ children }) {
   const oAuthRecord = useUserOAuth2({ serviceId: constants.OAUTH2.IMGUR.SERVICE_ID });
-  const [images, setImages] = useState(DEFAULT_IMAGES);
+  const [images, setLocalImages] = useState(DEFAULT_IMAGES);
   const [isLoading, setIsLoading] = useState(false);
+  const setImages = useCallback(
+    async (images) => {
+      setLocalImages(images);
+
+      await localforage.setImgurImages(images);
+    },
+    [setLocalImages]
+  );
   const refresh = useCallback(() => setImages(DEFAULT_IMAGES_LOCALFORAGE_FETCHED), []);
-  const value = useMemo(() => ({ images, isLoading, refresh }), [images, isLoading, refresh]);
+  const addImage = useCallback(async (image) => setImages([image, ...images]), [images, setImages]);
+  const value = useMemo(() => ({ addImage, images, isLoading, refresh }), [
+    addImage,
+    images,
+    isLoading,
+    refresh,
+  ]);
 
   useEffect(() => {
     const hasOAuth = oAuthRecord && oAuthRecord.accountUsername;

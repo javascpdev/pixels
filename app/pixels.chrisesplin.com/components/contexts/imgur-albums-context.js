@@ -13,10 +13,24 @@ export const ImgurAlbumsContext = React.createContext();
 
 export default function ImgurAlbumsProvider({ children }) {
   const oAuthRecord = useUserOAuth2({ serviceId: constants.OAUTH2.IMGUR.SERVICE_ID });
-  const [albums, setAlbums] = useState(DEFAULT_ALBUMS);
+  const [albums, setLocalAlbums] = useState(DEFAULT_ALBUMS);
   const [isLoading, setIsLoading] = useState(false);
+  const setAlbums = useCallback(
+    async (albums) => {
+      setLocalAlbums(albums);
+
+      await localforage.setImgurAlbums(albums);
+    },
+    [setLocalAlbums]
+  );
   const refresh = useCallback(() => setAlbums(DEFAULT_ALBUMS_LOCALFORAGE_FETCHED), []);
-  const value = useMemo(() => ({ albums, isLoading, refresh }), [albums, isLoading, refresh]);
+  const addAlbum = useCallback(async (album) => setAlbums([album, ...albums]), [albums, setAlbums]);
+  const value = useMemo(() => ({ addAlbum, albums, isLoading, refresh }), [
+    addAlbum,
+    albums,
+    isLoading,
+    refresh,
+  ]);
 
   useEffect(() => {
     const hasOAuth = oAuthRecord && oAuthRecord.accountUsername;
