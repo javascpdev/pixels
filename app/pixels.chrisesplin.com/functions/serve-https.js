@@ -17,6 +17,6 @@ app.use(bodyParser.json(bodyParserOptions));
 app.use(bodyParser.raw(bodyParserOptions));
 app.use(bodyParser.text(bodyParserOptions));
 app.use(bodyParser.urlencoded(bodyParserOptions));
-app.use('/', api);
+app.use('/api', api);
 
 app.listen(port, () => console.info('listening on port:', port));

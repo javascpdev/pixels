@@ -9,10 +9,6 @@ export default class CustomDocument extends Document {
       <html lang="en">
         <Head>
           <meta charSet="UTF-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-          />
           <meta name="description" content={constants.META.DESCRIPTION} />
           <meta name="theme_color" content={constants.META.THEME_COLOR} />
 

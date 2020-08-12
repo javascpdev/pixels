@@ -1,4 +1,4 @@
-export default hash => {
+export default function parseHash(hash) {
   const params = hash.slice(1).split('&');
 
   return params.reduce((result, param) => {
@@ -8,4 +8,4 @@ export default hash => {
 
     return result;
   }, {});
-};
+}

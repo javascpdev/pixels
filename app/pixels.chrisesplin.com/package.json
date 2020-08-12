@@ -10,32 +10,32 @@
     "deploy:hosting": "firebase deploy --only hosting --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:firestore": "firebase deploy --only firestore --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:functions": "firebase deploy --only functions --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
-    "deploy:functions:config": "firebase functions:config:set imgur.client_id=$IMGUR_CLIENT_ID imgur.client_secret=$IMGUR_CLIENT_SECRET --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
+    "deploy:functions:config": "sh bin/firebase-config.sh",
     "serve:https": "nodemon functions/serve-https",
     "test:imgur": "firebase emulators:exec functions/src/https/on-call/imgur-refresh-oauth2.on-call.test.sh",
     "_": ""
   },
   "dependencies": {
-    "@rmwc/button": "^6.0.14",
-    "@rmwc/card": "^6.0.14",
+    "@rmwc/button": "^6.1.3",
+    "@rmwc/card": "^6.1.3",
     "@rmwc/drawer": "^6.0.14",
-    "@rmwc/icon-button": "^6.0.14",
+    "@rmwc/icon-button": "^6.1.3",
     "@rmwc/linear-progress": "^6.0.14",
-    "@rmwc/list": "^6.0.14",
-    "@rmwc/select": "^6.1.0",
-    "@rmwc/textfield": "^6.1.0",
+    "@rmwc/list": "^6.1.3",
+    "@rmwc/select": "^6.1.3",
+    "@rmwc/textfield": "^6.1.3",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
-    "immer": "^6.0.5",
-    "localforage": "^1.7.3",
-    "next": "9.4.1",
+    "immer": "^7.0.7",
+    "localforage": "^1.9.0",
+    "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "recoil": "^0.0.7",
-    "uuid": "^8.1.0"
+    "recoil": "^0.0.10",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "firebase-tools": "^8.3.0",
+    "firebase-tools": "^8.7.0",
     "nodemon": "^2.0.4"
   }
 }

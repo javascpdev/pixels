@@ -51,16 +51,17 @@ export default function ImgurUploadForm({ canUpload, onUpload, src }) {
           onChange={onAlbumIdChange}
         />
       </div>
-      <div className={styles.formRow}>
-        <TextField
-          label="Album Title"
-          required
-          outlined
-          value={albumTitle}
-          onChange={onAlbumTitleChange}
-          disabled={!isNewAlbum}
-        />
-      </div>
+      {isNewAlbum && (
+        <div className={styles.formRow}>
+          <TextField
+            label="Album Title"
+            required
+            outlined
+            value={albumTitle}
+            onChange={onAlbumTitleChange}
+          />
+        </div>
+      )}
       <div className={styles.buttons}>
         <Button onClick={onCancel}>Cancel</Button>
         <Button raised disabled={!canSubmit}>

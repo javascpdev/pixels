@@ -25,10 +25,19 @@ if (isConfigMissing(config.imgur)) {
   };
 }
 
+if (isConfigMissing(config.google)) {
+  config.google = {
+    bucket_temp: process.env.GOOGLE_BUCKET_TEMP,
+  };
+}
+
 module.exports = {
   FIREBASE: {
     PROJECT_ID: config.firebase.projectId,
     DATABASE_URL: config.firebase.databaseURL,
+  },
+  GOOGLE: {
+    BUCKET_TEMP: config.google.bucket_temp,
   },
   IMGUR: {
     CLIENT_ID: config.imgur.client_id,
@@ -42,5 +51,5 @@ module.exports = {
 };
 
 function isConfigMissing(config) {
-  return !config || !Object.keys(config).length
+  return !config || !Object.keys(config).length;
 }
