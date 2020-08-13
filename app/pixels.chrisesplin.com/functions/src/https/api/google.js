@@ -16,7 +16,8 @@ module.exports = function GoogleApi(context) {
 
 function getHandleUpload(context) {
   return async (req, res) => {
-    const { uploads, unlink } = await extractMultipartFormData(req);
+    const { fields, uploads, unlink } = await extractMultipartFormData(req);
+    console.log('fields', fields);
     const bucket = new Storage().bucket(context.environment.GOOGLE.BUCKET_TEMP);
     const [uploadResult] = await bucket.upload(uploads.base64, {
       destination: `${uuid()}-${uploads.base64.split('/').pop()}`,
@@ -25,6 +26,10 @@ function getHandleUpload(context) {
 
     await unlink();
 
-    res.redirect(`/toolkit/upload?url=${base64Link}`);
+    if (fields.target) {
+      res.redirect(`${fields.target}?url=${base64Link}`);
+    } else {
+      res.send(base64Link);
+    }
   };
 }

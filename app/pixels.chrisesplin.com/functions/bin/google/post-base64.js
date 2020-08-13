@@ -11,6 +11,7 @@ const path = require('path');
       // url: 'https://us-central1-quiver-pixels-2020.cloudfunctions.net/api/google/upload',
       formData: {
         base64: fs.createReadStream(filepath),
+        target: '/toolkit/imgur/upload',
       },
     },
     function cb(err, httpResponse, body) {
