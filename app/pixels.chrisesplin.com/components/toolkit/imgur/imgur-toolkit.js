@@ -1,4 +1,4 @@
-import { CloudUploadSvg, PowerOffSvg, RefreshSvg } from '~/svg';
+import { CloudUploadSvg, PowerOffSvg, RefreshSvg, SearchSvg } from '~/svg';
 import React, { useCallback, useMemo } from 'react';
 
 import { IconButton } from '@rmwc/icon-button';
@@ -43,7 +43,7 @@ function ImgurToolkitWrapper() {
   } else if (!oauth2) {
     return <ImgurConnectPrompt />;
   } else {
-    return <ImgurToolkit oauth2={oauth2} />;
+    return <ImgurToolkit />;
   }
 }
 
@@ -90,8 +90,17 @@ function ImgurToolkit() {
 }
 
 function ImgurToolkitMenu({ refresh, refreshClassName, deleteOAuth2 }) {
+  const oauth2 = useUserOAuth2({ serviceId: constants.OAUTH2.IMGUR.SERVICE_ID });
+
   return ReactDOM.createPortal(
     <>
+      <a
+        href={`https://imgur.com/user/${oauth2?.accountUsername}/posts`}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <IconButton icon={<SearchSvg />} />
+      </a>
       <Uploader>
         <IconButton icon={<CloudUploadSvg />} />
       </Uploader>

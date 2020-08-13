@@ -6,3 +6,4 @@ export { default as FullscreenSvg } from './fullscreen';
 export { default as LogoSvg } from './logo';
 export { default as PowerOffSvg } from './power-off';
 export { default as RefreshSvg } from './refresh';
+export { default as SearchSvg } from './search';
