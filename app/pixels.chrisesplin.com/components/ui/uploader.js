@@ -5,7 +5,7 @@ import UploaderModal from '~/modals/uploader-modal';
 import styles from './uploader.module.css';
 import { v4 as uuid } from 'uuid';
 
-export default function Uploader({ children }) {
+export default function Uploader({ children, redirectUrl }) {
   const id = useRef(uuid());
   const inputRef = useRef();
   const [dropBase64, setDropBase64] = useState(null);
@@ -36,7 +36,12 @@ export default function Uploader({ children }) {
         stopDragging={stopDragging}
         setBase64={setDropBase64}
       />
-      <UploaderModal isOpen={!!base64} base64={base64} onClose={cancelUpload} />
+      <UploaderModal
+        isOpen={!!base64}
+        base64={base64}
+        onClose={cancelUpload}
+        redirectUrl={redirectUrl}
+      />
     </form>
   );
 }

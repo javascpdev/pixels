@@ -6,11 +6,11 @@ import Title from '~/top-bar/title';
 import constants from '~/constants';
 import styles from './toolkit.module.css';
 
-export default function Toolkit({ children, src, title }) {
+export default function Toolkit({ children, icon, src, title }) {
   return (
     <>
       <BackButton href={constants.ROUTES.DASHBOARD} />
-      <Logo src={src} />
+      <Logo icon={icon} src={src} />
       <Menu />
       <Title title={title} />
       <div className={styles.toolkit}>

@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import App from '~/app/app';
 import BackButton from '~/top-bar/back-button';
+import FilesUploadForm from '~/toolkit/files/files-upload-form';
 import ImgurAlbumsProvider from '~/contexts/imgur-albums-context';
 import ImgurImagesProvider from '~/contexts/imgur-images-context';
-import ImgurUploadForm from '~/toolkit/imgur/imgur-upload-form';
 import { LinearProgress } from '@rmwc/linear-progress';
 import Title from '~/top-bar/title';
 import UserOAuth2Provider from '~/contexts/user-oauth2-context';
@@ -41,13 +41,13 @@ function Upload({ url }) {
 
   return (
     <>
-      <BackButton href={constants.ROUTES.TOOLKIT.IMGUR.ROOT} />
+      <BackButton href={constants.ROUTES.TOOLKIT.FILES.ROOT} />
       <Title />
       <div className={styles.wrapper}>
         {isUploading ? (
           <UploadingProgress />
         ) : (
-          <ImgurUploadForm canUpload={canUpload} onUpload={onUpload} src={decodedUrl || base64} />
+          <FilesUploadForm canUpload={canUpload} onUpload={onUpload} src={decodedUrl || base64} />
         )}
       </div>
     </>
@@ -57,7 +57,7 @@ function Upload({ url }) {
 function UploadingProgress() {
   return (
     <>
-      <h1>Uploading to Imgur...</h1>
+      <h1>Uploading...</h1>
       <br />
       <LinearProgress />
     </>

@@ -12,10 +12,12 @@ export default function LogoPortal(props) {
 
 const DIMENSIONS = '1.75em';
 
-function Logo({ src }) {
-  return src ? (
-    <img src={src} alt="logo" style={{ width: DIMENSIONS, height: DIMENSIONS }} />
-  ) : (
-    <LogoSvg width={DIMENSIONS} height={DIMENSIONS} />
-  );
+function Logo({ icon, src }) {
+  if (icon) {
+    return <>{icon}</>;
+  } else if (src) {
+    return <img src={src} alt="logo" style={{ width: DIMENSIONS, height: DIMENSIONS }} />;
+  } else {
+    return <LogoSvg width={DIMENSIONS} height={DIMENSIONS} />;
+  }
 }

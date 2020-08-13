@@ -14,12 +14,12 @@ export default {
     SDK: '7.14.4',
   },
   LOCALFORAGE: {
+    BASE64_UPLOAD: `${LOCALFORAGE_PREFIX}-base64-upload`,
     LOGIN_REDIRECT: `${LOCALFORAGE_PREFIX}-login-redirect`,
     OAUTH2: `${LOCALFORAGE_PREFIX}-oauth2`,
     IMGUR: {
       ALBUMS: `${LOCALFORAGE_PREFIX}-imgur-albums`,
       IMAGES: `${LOCALFORAGE_PREFIX}-imgur-images`,
-      BASE64_UPLOAD: `${LOCALFORAGE_PREFIX}-imgur-base64-upload`,
     },
   },
   META: {
@@ -58,6 +58,10 @@ export default {
         IMAGES: ({ username, page }) =>
           `https://api.imgur.com/3/account/${username}/images/${page}`,
         UPLOAD: '/toolkit/imgur/upload',
+      },
+      FILES: {
+        ROOT: '/toolkit/files',
+        UPLOAD: '/toolkit/files/upload',
       },
     },
   },

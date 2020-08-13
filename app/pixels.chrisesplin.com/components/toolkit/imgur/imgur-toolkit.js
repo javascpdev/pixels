@@ -101,7 +101,7 @@ function ImgurToolkitMenu({ refresh, refreshClassName, deleteOAuth2 }) {
       >
         <IconButton icon={<SearchSvg />} />
       </a>
-      <Uploader>
+      <Uploader redirectUrl={constants.ROUTES.TOOLKIT.IMGUR.UPLOAD}>
         <IconButton icon={<CloudUploadSvg />} />
       </Uploader>
       <IconButton icon={<PowerOffSvg />} onClick={deleteOAuth2} />

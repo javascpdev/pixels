@@ -1,3 +1,11 @@
+.toolkits {
+  display: flex;
+}
+
+.toolkit {
+  margin: 1em;
+}
+
 .toolkit a,
 .toolkit a:visited {
   color: var(--mdc-theme-primary-text);
@@ -5,6 +13,9 @@
 }
 
 .toolkit div {
+  width: 6em;
+  height: 6em;
+
   border: var(--border);
   padding: 1em;
   text-align: center;

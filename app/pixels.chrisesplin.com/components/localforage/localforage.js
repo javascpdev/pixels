@@ -2,14 +2,14 @@ import constants from '~/constants';
 import localforage from 'localforage';
 import produce from 'immer';
 
+export const getBase64Upload = createGetter(constants.LOCALFORAGE.BASE64_UPLOAD);
+export const setBase64Upload = createSetter(constants.LOCALFORAGE.BASE64_UPLOAD);
+
 export const getLoginRedirect = createGetter(constants.LOCALFORAGE.LOGIN_REDIRECT);
 export const setLoginRedirect = createSetter(constants.LOCALFORAGE.LOGIN_REDIRECT);
 
 export const getImgurAlbums = createGetter(constants.LOCALFORAGE.IMGUR.ALBUMS);
 export const setImgurAlbums = createSetter(constants.LOCALFORAGE.IMGUR.ALBUMS);
-
-export const getImgurBase64Upload = createGetter(constants.LOCALFORAGE.IMGUR.BASE64_UPLOAD);
-export const setImgurBase64Upload = createSetter(constants.LOCALFORAGE.IMGUR.BASE64_UPLOAD);
 
 export const getImgurImages = createGetter(constants.LOCALFORAGE.IMGUR.IMAGES);
 export const setImgurImages = createSetter(constants.LOCALFORAGE.IMGUR.IMAGES);
