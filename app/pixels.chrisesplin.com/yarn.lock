@@ -1067,6 +1067,41 @@
     "@material/shape" "^5.1.0"
     "@material/theme" "^5.1.0"
 
+"@material/checkbox@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/checkbox/-/checkbox-5.1.0.tgz#2f689f6a409f0ed906a0d73bcd0078a768eaf9d1"
+  integrity sha512-NwpWxFdWrZNlSjcSEEcGz8UN7ZQ5k8VthExclJnawpYGPUnCPLTXWogREnA2Tyl22PJ6jOy8Ejb8tnpu2rSiaw==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/density" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/touch-target" "^5.1.0"
+    tslib "^1.9.3"
+
+"@material/chips@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@material/chips/-/chips-5.1.0.tgz#8bbd5b2be3300a9453cf6edd9186a7c0aa757ace"
+  integrity sha512-eYWrobENtXbnGoEx5BEURqoCfoc9aHu1JWq64mF12a/JSk+c035KYMjD4oyhow7dYqobbfQlWWdLQeHoRpYCeA==
+  dependencies:
+    "@material/animation" "^5.1.0"
+    "@material/base" "^5.1.0"
+    "@material/checkbox" "^5.1.0"
+    "@material/density" "^5.1.0"
+    "@material/dom" "^5.1.0"
+    "@material/elevation" "^5.1.0"
+    "@material/feature-targeting" "^5.1.0"
+    "@material/ripple" "^5.1.0"
+    "@material/rtl" "^5.1.0"
+    "@material/shape" "^5.1.0"
+    "@material/theme" "^5.1.0"
+    "@material/touch-target" "^5.1.0"
+    "@material/typography" "^5.1.0"
+    tslib "^1.9.3"
+
 "@material/density@^5.1.0":
   version "5.1.0"
   resolved "https://registry.npmjs.org/@material/density/-/density-5.1.0.tgz#d36512d413a00595122f98303766dae6b9e9fabe"
@@ -1422,6 +1457,17 @@
     "@rmwc/base" "^6.0.14"
     "@rmwc/button" "^6.1.3"
     "@rmwc/icon-button" "^6.1.3"
+    "@rmwc/ripple" "^6.1.3"
+    "@rmwc/types" "^6.0.5"
+
+"@rmwc/chip@^6.1.3":
+  version "6.1.3"
+  resolved "https://registry.npmjs.org/@rmwc/chip/-/chip-6.1.3.tgz#455dee00721804ebaf1882192b7199ebdb0d7867"
+  integrity sha512-WtAil6igI6MJhmahWxEXtpQme73yk9dVpGHZQWfj3jcfHmLPs0XYWW8sdY0tjQ7GN3aOUSzJN/ELNmiLeSHwlw==
+  dependencies:
+    "@material/chips" "^5.1.0"
+    "@rmwc/base" "^6.0.14"
+    "@rmwc/icon" "^6.1.3"
     "@rmwc/ripple" "^6.1.3"
     "@rmwc/types" "^6.0.5"
 

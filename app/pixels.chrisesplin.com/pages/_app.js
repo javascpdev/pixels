@@ -1,5 +1,6 @@
 import '@material/button/dist/mdc.button.css';
 import '@material/card/dist/mdc.card.css';
+import '@material/chips/dist/mdc.chips.css';
 import '@material/drawer/dist/mdc.drawer.css';
 import '@material/floating-label/dist/mdc.floating-label.css';
 import '@material/icon-button/dist/mdc.icon-button.css';

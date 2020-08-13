@@ -3,8 +3,11 @@ import Firebase from './firebase';
 import { Head } from 'next/document';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
+import useImmer from '~/hooks/use-immer';
 
 export default function App({ children, secure }) {
+  useImmer();
+
   return (
     <>
       {/* <Head>

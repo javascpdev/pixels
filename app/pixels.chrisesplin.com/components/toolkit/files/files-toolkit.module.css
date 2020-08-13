@@ -45,6 +45,10 @@
   max-height: 40vh;
 }
 
+.chipSet {
+  min-height: 3em;
+}
+
 .formRow {
   display: flex;
   justify-content: center;
