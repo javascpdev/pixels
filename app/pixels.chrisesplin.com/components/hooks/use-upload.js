@@ -6,7 +6,7 @@ export default function useUpload() {
   const currentUser = useCurrentUser();
 
   return useCallback(
-    ({ base64, url, tags }) => effects.upload({ base64, tags, uid: currentUser.uid, url }),
+    async ({ base64, url, tags }) => effects.upload({ base64, tags, uid: currentUser.uid, url }),
     [currentUser]
   );
 }

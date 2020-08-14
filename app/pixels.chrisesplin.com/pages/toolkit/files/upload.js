@@ -6,7 +6,6 @@ import FilesUploadForm from '~/toolkit/files/files-upload-form';
 import { LinearProgress } from '@rmwc/linear-progress';
 import Title from '~/top-bar/title';
 import constants from '~/constants';
-import effects from '~/effects';
 import localforage from '~/localforage';
 import styles from '~/css/imgur-upload.module.css';
 import useParams from '~/hooks/use-params';
@@ -77,16 +76,15 @@ function useUploading({ base64, url }) {
     async ({ tags }) => {
       setIsUploading(true);
 
-      const { error } = upload({ base64, url, tags });
+      const { error, record } = await upload({ base64, url, tags });
 
       if (error) {
         alert(error);
         setIsUploading(false);
       } else {
-        console.log('TODO: uncomment this stuff');
-        // await localforage.setBase64Upload(undefined);
+        await localforage.setBase64Upload(undefined);
 
-        // redirect(constants.ROUTES.TOOLKIT.FILES.ROOT);
+        redirect(constants.ROUTES.TOOLKIT.FILES.ROOT);
       }
     },
     [base64, redirect, setIsUploading, url, upload]

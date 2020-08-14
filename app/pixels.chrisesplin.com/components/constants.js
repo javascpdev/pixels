@@ -21,6 +21,10 @@ export default {
       ALBUMS: `${LOCALFORAGE_PREFIX}-imgur-albums`,
       IMAGES: `${LOCALFORAGE_PREFIX}-imgur-images`,
     },
+    USER: {
+      OAUTH2: `${LOCALFORAGE_PREFIX}-user-oauth2`,
+      UPLOADS: `${LOCALFORAGE_PREFIX}-user-uploads`,
+    },
   },
   META: {
     TITLES: {

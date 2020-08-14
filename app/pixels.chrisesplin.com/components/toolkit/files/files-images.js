@@ -2,22 +2,20 @@ import GalleryImage from '~/ui/gallery-image';
 import React from 'react';
 import styles from './files-toolkit.module.css';
 
-export default function FilesImages({ images }) {
+export default function FilesImages({ uploads }) {
   return (
-    <ul className={styles.imageGrid}>
-      {images.map &&
-        images.map((image) => {
-          console.log('image', image);
-
-          return null;
+    <>
+      <h3>Images</h3>
+      <ul className={styles.imageGrid}>
+        {uploads.map((image) => {
+          console.log('image.downloadURL', image.downloadURL);
           return (
-            <li key={image.id}>
-              <a href={`https://imgur.com/${image.id}`} target="_blank" rel="noopener">
-                <GalleryImage src={`https://i.imgur.com/${image.id}m.png`} alt={image.name} />
-              </a>
+            <li key={image.__id}>
+              <GalleryImage src={image.downloadURL} alt={image.metadata.name} />
             </li>
           );
         })}
-    </ul>
+      </ul>
+    </>
   );
 }

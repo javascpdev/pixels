@@ -1,0 +1,1 @@
+cat pixels.chrisesplin.com/functions/service-account.json | base64 -w 0 

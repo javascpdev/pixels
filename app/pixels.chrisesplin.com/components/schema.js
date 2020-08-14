@@ -14,8 +14,10 @@ export default {
   getUserOAuth2Ref: (uid) => db().collection('users').doc(uid).collection('oauth2'),
   getUserOAuth2ItemRef: (uid, serviceId) =>
     db().collection('users').doc(uid).collection('oauth2').doc(serviceId),
-  getUserStorageRef: (uid) => storage().child(uid),
-  getUserUploadsRef: (uid) => db().collection(users).doc(uid).collection('uploads'),
+  getUserStorageRef: (uid) => storage().ref(uid),
+  getUserUploadRef: (uid, uploadId) =>
+    db().collection('users').doc(uid).collection('uploads').doc(uploadId),
+  getUserUploadsRef: (uid) => db().collection('users').doc(uid).collection('uploads'),
 };
 
 function db() {

@@ -18,5 +18,10 @@ service cloud.firestore {
       allow read: if isUser(uid) || isAdmin();
       allow write: if isUser(uid) || isAdmin();
     }
+
+    match /users/{uid}/uploads/{documents=**} { 
+      allow read: if isUser(uid) || isAdmin();
+      allow write: if isUser(uid) || isAdmin();
+    }
   }
 }

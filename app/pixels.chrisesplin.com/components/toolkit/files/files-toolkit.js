@@ -1,11 +1,15 @@
 import { CloudUploadSvg, FolderSvg, SearchSvg } from '~/svg';
 
+import FilesImages from './files-images';
 import { IconButton } from '@rmwc/icon-button';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Toolkit from '../toolkit';
 import Uploader from '~/ui/uploader';
+import UserUploadsProvider from '~/contexts/user-uploads-context';
 import constants from '~/constants';
+import styles from './files-toolkit.module.css';
+import useUserUploads from '~/hooks/use-user-uploads';
 
 export default function ImgurToolkitConnected() {
   return (
@@ -13,22 +17,24 @@ export default function ImgurToolkitConnected() {
       icon={<FolderSvg width="2.5em" height="2.5em" fill={constants.COLORS.MDC_THEME_SECONDARY} />}
       title="Files"
     >
-      <FilesToolkitWrapper />
+      <UserUploadsProvider>
+        <FilesToolkitWrapper />
+      </UserUploadsProvider>
     </Toolkit>
   );
 }
 
 function FilesToolkitWrapper() {
-  const isLoading = typeof window == 'undefined';
+  const userUploads = useUserUploads();
 
-  if (isLoading) {
+  if (userUploads.__isLoading) {
     return null;
   } else {
     return (
-      <>
+      <div className={styles.wrapper}>
         <FilesToolkitMenu />
-        <h3>Images</h3>
-      </>
+        <FilesImages uploads={userUploads} />
+      </div>
     );
   }
 }

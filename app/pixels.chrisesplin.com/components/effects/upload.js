@@ -1,18 +1,31 @@
+import cleanRecord from '~/utilities/clean-record';
+import getDataUrlFromSrc from '~/utilities/get-data-url-from-src';
 import schema from '~/schema';
 import { v4 as uuid } from 'uuid';
 
-export default function upload({ base64, tags, uid, url }) {
-  console.log({ base64, schema, tags, url });
+export default async function upload({ base64, tags = [], uid, url }) {
   try {
-    if (base64) {
-      const [heading] = base64.split(';');
-      const [, suffix] = heading.split('/');
+    const userStorageRef = schema.getUserStorageRef(uid);
+    let dataUrl = base64;
 
-      console.log('suffix', suffix);
+    if (url) {
+      dataUrl = await getDataUrlFromSrc(url);
     }
 
-    // const userStorageRef = schema.getUserStorageRef(uid);
-    return {};
+    const [heading] = dataUrl.split(';');
+    const [, suffix] = heading.split('/');
+    const fileRef = userStorageRef.child(`${uuid()}.${suffix}`);
+    const snapshot = await fileRef.putString(dataUrl, 'data_url');
+    const downloadURL = await fileRef.getDownloadURL();
+    const { metadata, totalBytes } = snapshot;
+
+    const record = cleanRecord({ downloadURL, metadata, tags, totalBytes });
+
+    const userUploadsRef = schema.getUserUploadRef(uid, record.metadata.name);
+
+    await userUploadsRef.set(record);
+
+    return {record};
   } catch (error) {
     console.log('error', error);
     return { error };
