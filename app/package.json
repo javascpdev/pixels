@@ -11,7 +11,7 @@
     "ci:build": "yarn build && yarn export",
     "ci:config": "yarn ci:service-account && cd /app/pixels.chrisesplin.com && yarn deploy:functions:config",
     "ci:deploy": "yarn deploy",
-    "ci:service-account": "echo $SERVICE_ACCOUNT_BASE64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS && echo ",
+    "ci:service-account": "sh pixels/bin/service-account.sh",
     "_": ""
   }
 }
