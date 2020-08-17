@@ -15,6 +15,7 @@ export default {
   },
   LOCALFORAGE: {
     BASE64_UPLOAD: `${LOCALFORAGE_PREFIX}-base64-upload`,
+    FILE_UPLOAD: `${LOCALFORAGE_PREFIX}-file-upload`,
     LOGIN_REDIRECT: `${LOCALFORAGE_PREFIX}-login-redirect`,
     OAUTH2: `${LOCALFORAGE_PREFIX}-oauth2`,
     IMGUR: {

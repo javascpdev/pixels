@@ -25,7 +25,7 @@ export default async function upload({ base64, tags = [], uid, url }) {
 
     await userUploadsRef.set(record);
 
-    return {record};
+    return { record };
   } catch (error) {
     console.log('error', error);
     return { error };

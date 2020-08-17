@@ -8,9 +8,10 @@ import { v4 as uuid } from 'uuid';
 export default function Uploader({ children, redirectUrl }) {
   const id = useRef(uuid());
   const inputRef = useRef();
+  const [file, setFile] = useState(null);
   const [dropBase64, setDropBase64] = useState(null);
   const handleLabelClick = useCallback(() => inputRef.current.click(), [inputRef]);
-  const { fileBase64, handleInput } = useInputHandler({ inputRef });
+  const { fileBase64, handleInput } = useInputHandler({ inputRef, setFile });
   const { isDragging, stopDragging } = useIsDragging();
   const cancelUpload = useCallback(() => {
     inputRef.current.value = '';
@@ -35,10 +36,12 @@ export default function Uploader({ children, redirectUrl }) {
         isActive={isDragging}
         stopDragging={stopDragging}
         setBase64={setDropBase64}
+        setFile={setFile}
       />
       <UploaderModal
         isOpen={!!base64}
         base64={base64}
+        file={file}
         onClose={cancelUpload}
         redirectUrl={redirectUrl}
       />
@@ -53,15 +56,16 @@ function UploaderDragAndDrop(props) {
   );
 }
 
-function DropTarget({ isActive, setBase64, stopDragging }) {
+function DropTarget({ isActive, setBase64, setFile, stopDragging }) {
   const handleDrop = useCallback(
     async (e) => {
       blockEvent(e);
       stopDragging();
 
-      const dropBase64 = await extractFilesBase64(e.dataTransfer.files);
+      const [dropBase64] = await extractFilesBase64(e.dataTransfer.files);
 
       setBase64(dropBase64);
+      setFile(e.dataTransfer.files[0]);
     },
     [stopDragging]
   );
@@ -102,32 +106,37 @@ function useIsDragging() {
   return { isDragging, stopDragging };
 }
 
-function useInputHandler({ inputRef }) {
+function useInputHandler({ inputRef, setFile }) {
   const [fileBase64, setFileBase64] = useState(null);
   const handleInput = useCallback(async () => {
     let fileBase64 = inputRef.current.value;
 
     if (inputRef.current.value) {
-      fileBase64 = await extractFilesBase64(inputRef.current.files);
+      [fileBase64] = await extractFilesBase64(inputRef.current.files);
     }
 
     setFileBase64(fileBase64);
-  }, [inputRef, setFileBase64]);
+    setFile(inputRef.current.files[0]);
+  }, [inputRef, setFile, setFileBase64]);
 
   return { fileBase64, handleInput };
 }
 
-async function extractFilesBase64(files) {
-  return new Promise((resolve) => {
-    const [file] = files;
-    const reader = new FileReader();
+export async function extractFilesBase64(files) {
+  return Promise.all(
+    [...files].map(
+      (file) =>
+        new Promise((resolve) => {
+          const reader = new FileReader();
 
-    reader.addEventListener('load', () => resolve(reader.result), false);
+          reader.addEventListener('load', () => resolve(reader.result), false);
 
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  });
+          if (file) {
+            reader.readAsDataURL(file);
+          }
+        })
+    )
+  );
 }
 
 function blockEvent(e) {

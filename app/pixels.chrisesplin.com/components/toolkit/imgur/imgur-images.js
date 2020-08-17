@@ -1,6 +1,6 @@
 import GalleryImage from "~/ui/gallery-image";
 import React from 'react';
-import styles from './imgur-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 
 export default function ImgurImages({ images }) {
   return (

@@ -4,7 +4,7 @@ import { Button } from '@rmwc/button';
 import { Select } from '@rmwc/select';
 import { TextField } from '@rmwc/textfield';
 import constants from '~/constants';
-import styles from './imgur-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 import useImgurAlbums from '~/hooks/use-imgur-albums';
 import useRouter from '~/hooks/use-router';
 

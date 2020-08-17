@@ -9,21 +9,21 @@ import styles from './uploader-modal.module.css';
 import useRouter from '~/hooks/use-router';
 
 export default function UploaderModalPortal({ isOpen, ...props }) {
-  return (
-    isOpen &&
-    ReactDOM.createPortal(<UploaderModal {...props} />, window.document.getElementById('modal'))
-  );
+  return isOpen
+    ? ReactDOM.createPortal(<UploaderModal {...props} />, window.document.getElementById('modal'))
+    : null;
 }
 
-function UploaderModal({ base64, onClose, redirectUrl }) {
+function UploaderModal({ base64, file, onClose, redirectUrl }) {
   const { redirect } = useRouter();
   const [isUploading, setIsUploading] = useState(false);
   const upload = useCallback(async () => {
     await localforage.setBase64Upload(base64);
+    await localforage.setFileUpload(file);
 
     setIsUploading(false);
     redirect(redirectUrl);
-  }, [base64, onClose, redirect, redirectUrl, setIsUploading]);
+  }, [base64, file, onClose, redirect, redirectUrl, setIsUploading]);
 
   return (
     <Modal onClose={onClose}>

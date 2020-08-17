@@ -5,3 +5,6 @@
   width: var(--dimensions-max-width);
 }
 
+.toolkit menu > *:not(:last-child) {
+  margin-right: 0.25em;
+}

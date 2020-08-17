@@ -1,7 +1,7 @@
 import { Button } from '@rmwc/button';
 import React from 'react';
 import constants from '~/constants';
-import styles from './imgur-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 import useCurrentUser from '~/hooks/use-current-user';
 import useEnvironment from '~/hooks/use-environment';
 

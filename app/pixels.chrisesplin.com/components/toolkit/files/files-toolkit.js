@@ -1,5 +1,6 @@
-import { CloudUploadSvg, FolderSvg, SearchSvg } from '~/svg';
+import { CloudUploadSvg, CreateNewFolderSvg, FolderSvg, SearchSvg } from '~/svg';
 
+import BulkUploader from '~/ui/bulk-uploader';
 import FilesImages from './files-images';
 import { IconButton } from '@rmwc/icon-button';
 import React from 'react';
@@ -8,7 +9,7 @@ import Toolkit from '../toolkit';
 import Uploader from '~/ui/uploader';
 import UserUploadsProvider from '~/contexts/user-uploads-context';
 import constants from '~/constants';
-import styles from './files-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 import useUserUploads from '~/hooks/use-user-uploads';
 
 export default function ImgurToolkitConnected() {
@@ -49,6 +50,9 @@ function FilesToolkitMenu({}) {
           <Uploader redirectUrl={constants.ROUTES.TOOLKIT.FILES.UPLOAD}>
             <IconButton icon={<CloudUploadSvg />} />
           </Uploader>
+          <BulkUploader>
+            <IconButton icon={<CreateNewFolderSvg />} />
+          </BulkUploader>
         </>,
         el
       )

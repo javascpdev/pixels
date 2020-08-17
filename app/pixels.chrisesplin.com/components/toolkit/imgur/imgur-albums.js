@@ -3,7 +3,7 @@ import { Card, CardActionIcon, CardActionIcons, CardActions, CardPrimaryAction }
 import { FullscreenSvg } from '~/svg';
 import GalleryImage from '~/ui/gallery-image';
 import React from 'react';
-import styles from './imgur-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 
 export default function ImgurAlbums({ albums }) {
   return (

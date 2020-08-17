@@ -11,7 +11,7 @@ import UserOAuth2Provider from '~/contexts/user-oauth2-context';
 import constants from '~/constants';
 import effects from '~/effects';
 import localforage from '~/localforage';
-import styles from '~/css/imgur-upload.module.css';
+import styles from '~/css/upload.module.css';
 import useImgurAlbums from '~/hooks/use-imgur-albums';
 import useImgurImages from '~/hooks/use-imgur-images';
 import useParams from '~/hooks/use-params';

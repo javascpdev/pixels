@@ -7,7 +7,7 @@ import { LinearProgress } from '@rmwc/linear-progress';
 import Title from '~/top-bar/title';
 import constants from '~/constants';
 import localforage from '~/localforage';
-import styles from '~/css/imgur-upload.module.css';
+import styles from '~/css/upload.module.css';
 import useParams from '~/hooks/use-params';
 import useRouter from '~/hooks/use-router';
 import useUpload from '~/hooks/use-upload';
@@ -23,7 +23,7 @@ export default function UploadPage() {
 }
 
 function Upload({ url }) {
-  const base64 = useBase64({ url });
+  const { base64, file } = useUploadingFile({ url });
   const decodedUrl = useMemo(() => url && atob(url), [url]);
   const { isUploading, onUpload } = useUploading({ base64, url: decodedUrl });
 
@@ -35,7 +35,7 @@ function Upload({ url }) {
         {isUploading ? (
           <UploadingProgress />
         ) : (
-          <FilesUploadForm onUpload={onUpload} src={decodedUrl || base64} />
+          <FilesUploadForm file={file} onUpload={onUpload} src={decodedUrl || base64} />
         )}
       </div>
     </>
@@ -52,20 +52,23 @@ function UploadingProgress() {
   );
 }
 
-function useBase64({ url }) {
+function useUploadingFile({ url }) {
   const [base64, setBase64] = useState(null);
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     (async () => {
       if (!url) {
         const base64 = await localforage.getBase64Upload();
+        const file = await localforage.getFileUpload();
 
         setBase64(base64);
+        setFile(file);
       }
     })();
-  }, [setBase64, url]);
+  }, [setBase64, setFile, url]);
 
-  return base64;
+  return useMemo(() => ({ base64, file }), [base64, file]);
 }
 
 function useUploading({ base64, url }) {

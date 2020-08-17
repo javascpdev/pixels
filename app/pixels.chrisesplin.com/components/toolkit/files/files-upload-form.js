@@ -1,18 +1,19 @@
 import { Chip, ChipSet } from '@rmwc/chip';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Button } from '@rmwc/button';
 import { CloseSvg } from '~/svg';
 import { TextField } from '@rmwc/textfield';
 import constants from '~/constants';
+import getFilenameTags from '~/utilities/get-filename-tags';
 import { produce } from 'immer';
-import styles from './files-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 import useKeyup from '~/hooks/use-keyup';
 import useRouter from '~/hooks/use-router';
 
 const BAD_CHARACTERS = /[^a-zA-Z0-9\s]/g;
 
-export default function ImgurUploadForm({ onUpload, src }) {
+export default function ImgurUploadForm({ file, onUpload, src }) {
   const inputRef = useRef();
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState(new Set());
@@ -74,6 +75,8 @@ export default function ImgurUploadForm({ onUpload, src }) {
     [handleAdd]
   );
 
+  useFilenameTags({ file, setTags });
+
   return (
     <div className={styles.uploadForm}>
       <img src={src} alt="upload preview" />
@@ -117,4 +120,14 @@ export default function ImgurUploadForm({ onUpload, src }) {
       </form>
     </div>
   );
+}
+
+function useFilenameTags({ setTags, file }) {
+  useEffect(() => {
+    if (file) {
+      const tags = getFilenameTags(file.name);
+
+      setTags(new Set(tags));
+    }
+  }, [file, setTags]);
 }

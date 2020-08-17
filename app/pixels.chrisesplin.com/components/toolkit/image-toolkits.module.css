@@ -34,6 +34,11 @@
 .buttons {
   display: flex;
   justify-content: space-evenly;
+  margin: 2em 0;
+}
+
+.uploadForm {
+  width: 100%;
   margin-top: 2em;
 }
 
@@ -82,4 +87,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0;
+}
+
+@media (max-width: 650px) {
+  .imageGrid {
+    justify-content: center;
+  }
 }

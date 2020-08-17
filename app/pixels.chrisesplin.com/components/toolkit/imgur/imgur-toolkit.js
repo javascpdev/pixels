@@ -14,7 +14,7 @@ import UserOAuth2Provider from '~/contexts/user-oauth2-context';
 import classnames from 'classnames';
 import constants from '~/constants';
 import effects from '~/effects';
-import styles from './imgur-toolkit.module.css';
+import styles from '../image-toolkits.module.css';
 import useCurrentUser from '~/hooks/use-current-user';
 import useImgurAlbums from '~/hooks/use-imgur-albums';
 import useImgurImages from '~/hooks/use-imgur-images';
