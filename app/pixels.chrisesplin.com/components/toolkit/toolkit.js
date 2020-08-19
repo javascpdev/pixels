@@ -14,7 +14,10 @@ export default function Toolkit({ children, icon, src, title }) {
       <Menu />
       <Title title={title} />
       <div className={styles.toolkit}>
-        <menu id="toolkit-menu" />
+        <div className={styles.menus}>
+          <menu id="action-menu" />
+          <menu id="toolkit-menu" />
+        </div>
         <div id="toolkit-body">{children}</div>
       </div>
     </>

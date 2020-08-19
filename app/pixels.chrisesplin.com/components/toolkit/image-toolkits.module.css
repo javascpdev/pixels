@@ -18,6 +18,13 @@
   align-items: center;
   list-style: none;
   padding: 0;
+  max-height: calc(100vh - 13em);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.imageGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .imageGrid img {

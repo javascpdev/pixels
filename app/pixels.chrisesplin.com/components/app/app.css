@@ -30,7 +30,7 @@
   /* Dimensions */
   --dimensions-width: 800px;
   --dimensions-max-width: calc(100vw - 3em);
-  --dimensions-min-height: calc(100vh - 8em);
+  --dimensions-min-height: calc(100vh - 9em);
   --dimensions-max-height: calc(100vh - 4em);
 }
 

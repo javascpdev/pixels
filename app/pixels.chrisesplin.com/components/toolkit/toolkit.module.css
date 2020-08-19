@@ -2,9 +2,18 @@
   display: flex;
   justify-content: flex-end;
   padding: 0;
-  width: var(--dimensions-max-width);
 }
 
 .toolkit menu > *:not(:last-child) {
   margin-right: 0.25em;
+}
+
+.menus {
+  display: flex;
+  width: var(--dimensions-max-width);
+}
+
+.menus menu:first-child {
+  flex: 1;
+  justify-content: flex-start;
 }

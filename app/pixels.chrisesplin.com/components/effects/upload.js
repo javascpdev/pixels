@@ -27,7 +27,8 @@ export default async function upload({ base64, tags = [], uid, url }) {
 
     return { record };
   } catch (error) {
-    console.log('error', error);
+    console.error('error', error);
+
     return { error };
   }
 }

@@ -1,6 +1,7 @@
 /* globals window */
 
 import deleteOAuth2 from './delete-oauth2';
+import deleteUpload from './delete-upload';
 import imgurCreateAlbum from './imgur-create-album';
 import imgurImageUpload from './imgur-image-upload';
 import setOAuth2 from './set-oauth2';
@@ -8,6 +9,7 @@ import upload from './upload';
 
 export default {
   deleteOAuth2: wrapEffect(deleteOAuth2),
+  deleteUpload: wrapEffect(deleteUpload),
   imgurCreateAlbum: wrapEffect(imgurCreateAlbum),
   imgurImageUpload: wrapEffect(imgurImageUpload),
   setOAuth2: wrapEffect(setOAuth2),

@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+}
+
+.wrapper ul {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  visibility: hidden;
+  list-style: none;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin: 0 var(--image-margin);
+  padding: 0;
+}
+
+.wrapper[data-is-selected='true'] ul {
+  visibility: visible;
+}
+
+.wrapper ul li {
+  font-size: 0.5em;
+  margin: 0.5em;
+}
+
+.wrapper[data-is-selected='true'] img {
+  outline: 4px solid var(--mdc-theme-secondary);
+  box-shadow: 2px 2px 10px -3px rgba(170, 170, 170, 1);
+}

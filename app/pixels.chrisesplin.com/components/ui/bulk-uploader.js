@@ -17,8 +17,6 @@ export default function BulkUploader({ children }) {
     setFiles([]);
   }, [inputRef, setFiles]);
 
-  console.log('files', files);
-
   return (
     <>
       <form onSubmit={blockEvent}>
