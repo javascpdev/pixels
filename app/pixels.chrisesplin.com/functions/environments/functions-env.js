@@ -11,6 +11,13 @@ if (!process.env.GCLOUD_PROJECT) {
 const functions = require('firebase-functions');
 let config = functions.config();
 
+if (!config.algolia) {
+  config.algolia = {
+    admin_api_key: process.env.ALGOLIA_PRIVATE_API_KEY,
+    prefix: process.env.ALGOLIA_PREFIX,
+  };
+}
+
 if (isConfigMissing(config.firebase)) {
   config.firebase = {
     projectId: process.env.FIREBASE_PROJECT,
@@ -32,6 +39,12 @@ if (isConfigMissing(config.google)) {
 }
 
 module.exports = {
+  ALGOLIA: {
+    ADMIN_API_KEY: config.algolia.admin_api_key,
+    APPLICATION_ID: 'TO2F04TXTS',
+    INDICES: { UPLOADS: 'uploads' },
+    PREFIX: config.algolia.prefix,
+  },
   FIREBASE: {
     PROJECT_ID: config.firebase.projectId,
     DATABASE_URL: config.firebase.databaseURL,

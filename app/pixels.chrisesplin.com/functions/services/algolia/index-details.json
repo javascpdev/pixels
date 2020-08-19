@@ -1,0 +1,9 @@
+[
+  {
+    "indexName": "uploads",
+    "settings": {
+      "searchableAttributes": ["tags"],
+      "attributesForFaceting": ["filterOnly(userId)"]
+    }
+  }
+]
