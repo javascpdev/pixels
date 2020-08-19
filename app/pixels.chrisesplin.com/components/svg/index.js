@@ -1,7 +1,8 @@
-export { default as ArrowForwardSvg } from './arrow-forward';
 export { default as ArrowBackSvg } from './arrow-back';
+export { default as ArrowForwardSvg } from './arrow-forward';
 export { default as CloseSvg } from './close';
 export { default as CloudUploadSvg } from './cloud-upload';
+export { default as ContentCopySvg } from './content-copy';
 export { default as CreateNewFolderSvg } from './create-new-folder';
 export { default as DeleteSvg } from './delete';
 export { default as FolderSvg } from './folder';

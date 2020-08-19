@@ -1,13 +1,14 @@
-import { DeleteSvg, HighlightOffSvg } from '~/svg';
+import { ContentCopySvg, DeleteSvg, HighlightOffSvg } from '~/svg';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import GalleryImage from '~/ui/gallery-image';
 import { IconButton } from '@rmwc/icon-button';
 import ReactDOM from 'react-dom';
+import copyToClipboard from '~/utilities/copy-to-clipboard';
 import effects from '~/effects';
 import styles from '../image-toolkits.module.css';
+import useAlert from '~/hooks/use-alert';
 import useMultiSelect from '~/hooks/use-multi-select';
-import useSelected from '~/hooks/use-selected';
 
 export default function FilesImages({ uploads }) {
   const [deleting, setDeleting] = useState(new Set());
@@ -53,8 +54,12 @@ export default function FilesImages({ uploads }) {
 
 function FilesActionMenu({ addDeleting, deselectAll, selected, uploads }) {
   const el = window.document.getElementById('action-menu');
+  const alert = useAlert();
+  const selectedUploads = useMemo(() => uploads.filter((u) => selected.has(u.__id)), [
+    selected,
+    uploads,
+  ]);
   const onDeleteClick = useCallback(async () => {
-    const uploadsToDelete = uploads.filter((u) => selected.has(u.__id));
     let i = uploadsToDelete.length;
 
     addDeleting([...selected]);
@@ -62,17 +67,29 @@ function FilesActionMenu({ addDeleting, deselectAll, selected, uploads }) {
     deselectAll();
 
     while (i--) {
-      let upload = uploadsToDelete[i];
+      let upload = selectedUploads[i];
 
       await effects.deleteUpload(upload);
     }
-  }, [addDeleting, deselectAll, selected, uploads]);
+  }, [addDeleting, deselectAll, selected, selectedUploads]);
+  const onCopyClick = useCallback(() => {
+    const downloadURLs = selectedUploads.map((u) => u.downloadURL);
+    const copyString = downloadURLs.join('\n\n');
+
+    copyToClipboard(copyString);
+
+    console.log(copyString);
+
+    alert('copied');
+  }, [alert, selectedUploads]);
 
   return el && selected.size
     ? ReactDOM.createPortal(
         <>
           <IconButton icon={<HighlightOffSvg />} onClick={deselectAll} />
-          <IconButton icon={<DeleteSvg />} onClick={onDeleteClick} />
+          <IconButton icon={<ContentCopySvg />} onClick={onCopyClick} />
+          <div className="flex" />
+          <IconButton icon={<DeleteSvg fill="var(--color-warning)" />} onClick={onDeleteClick} />
         </>,
         el
       )

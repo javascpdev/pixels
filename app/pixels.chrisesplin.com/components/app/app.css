@@ -86,6 +86,10 @@ hr {
   border-width: var(--border-width) 0 0 0;
 }
 
+.flex {
+  flex: 1;
+}
+
 #app {
   display: flex;
   flex-direction: column;

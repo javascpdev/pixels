@@ -12,6 +12,7 @@ import '@material/menu/dist/mdc.menu.css';
 import '@material/notched-outline/dist/mdc.notched-outline.css';
 import '@material/ripple/dist/mdc.ripple.css';
 import '@material/select/dist/mdc.select.css';
+import '@material/snackbar/dist/mdc.snackbar.css';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@rmwc/icon/icon.css';
 import '@rmwc/select/select.css';

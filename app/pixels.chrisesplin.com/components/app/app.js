@@ -1,3 +1,5 @@
+import AlertsHandler from './alerts-handler';
+import AlertsProvider from '~/contexts/alerts-context';
 import Authorization from './authorization';
 import Firebase from './firebase';
 import { Head } from 'next/document';
@@ -19,7 +21,12 @@ export default function App({ children, secure }) {
       <Firebase />
       <RecoilRoot>
         <Authorization secure={secure} />
-        <div id="app">{children}</div>
+        <AlertsProvider>
+          <>
+            <div id="app">{children}</div>
+            <AlertsHandler />
+          </>
+        </AlertsProvider>
       </RecoilRoot>
     </>
   );
