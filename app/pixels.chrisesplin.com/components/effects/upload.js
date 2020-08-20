@@ -19,7 +19,7 @@ export default async function upload({ base64, tags = [], uid, url }) {
     const downloadURL = await fileRef.getDownloadURL();
     const { metadata, totalBytes } = snapshot;
 
-    const record = cleanRecord({ downloadURL, metadata, tags, totalBytes });
+    const record = cleanRecord({ downloadURL, metadata, tags, totalBytes, created: Date.now() });
 
     const userUploadsRef = schema.getUserUploadRef(uid, record.metadata.name);
 

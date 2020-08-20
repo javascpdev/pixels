@@ -23,9 +23,17 @@
 
 #title h1 {
   margin: 0;
+  user-select: none;
 }
 
 #menu {
   display: flex;
   align-items: center;
+}
+
+#progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 }

@@ -27,5 +27,5 @@ export default function useSelected() {
   );
   const deselectAll = useCallback((id) => setSelected(DEFAULT_SELECTED), [setSelected]);
 
-  return useValue({ deselect, deselectAll, select, selected });
+  return useValue({ deselect, deselectAll, select, selected, setSelected });
 }

@@ -11,6 +11,15 @@
   text-decoration: none;
 }
 
+.scrollArea {
+  max-height: calc(100vh - 9.75em);
+  scrollbar-width: none !important;
+}
+
+.scrollArea::-webkit-scrollbar {
+  display: none;
+}
+
 .imageGrid {
   display: flex;
   flex-wrap: wrap;
@@ -18,13 +27,6 @@
   align-items: center;
   list-style: none;
   padding: 0;
-  max-height: calc(100vh - 13em);
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.imageGrid::-webkit-scrollbar {
-  display: none;
 }
 
 .imageGrid img {

@@ -28,6 +28,7 @@ export default class CustomDocument extends Document {
           <div id="modal" />
           <div id="right-drawer" />
           <div id="uploader" />
+          <div id="progress" />
           <Main />
           <footer id="footer" />
           <NextScript />

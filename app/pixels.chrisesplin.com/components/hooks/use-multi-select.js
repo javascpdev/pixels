@@ -5,7 +5,7 @@ import useSelected from './use-selected';
 import useValue from './use-value';
 
 export default function useMultiSelect({ ids }) {
-  const { deselect, deselectAll, select, selected } = useSelected();
+  const { deselect, deselectAll, select, selected, setSelected } = useSelected();
   const getOnClick = useCallback(
     (id) => (e) => {
       const isCtrlClick = e.ctrlKey;
@@ -43,9 +43,11 @@ export default function useMultiSelect({ ids }) {
     (e) => {
       if (e.key == 'Escape') {
         deselectAll();
+      } else if (e.key == 'a' && e.ctrlKey) {
+        setSelected(new Set(ids));
       }
     },
-    [deselectAll]
+    [deselectAll, ids, setSelected]
   );
 
   return useValue({ deselectAll, getOnClick, selected });

@@ -62,10 +62,12 @@ function DropTarget({ isActive, setBase64, setFile, stopDragging }) {
       blockEvent(e);
       stopDragging();
 
-      const [dropBase64] = await extractFilesBase64(e.dataTransfer.files);
+      if (e.dataTransfer.files?.length) {
+        const [dropBase64] = await extractFilesBase64(e.dataTransfer.files);
 
-      setBase64(dropBase64);
-      setFile(e.dataTransfer.files[0]);
+        setBase64(dropBase64);
+        setFile(e.dataTransfer.files[0]);
+      }
     },
     [stopDragging]
   );
