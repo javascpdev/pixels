@@ -1,9 +1,10 @@
 import { CloudUploadSvg, CreateNewFolderSvg, FolderSvg, SearchSvg } from '~/svg';
+import React, { useCallback, useState } from 'react';
 
 import BulkUploader from '~/ui/bulk-uploader';
+import FileSearch from './file-search';
 import FilesImages from './files-images';
 import { IconButton } from '@rmwc/icon-button';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import Toolkit from '../toolkit';
 import Uploader from '~/ui/uploader';
@@ -27,26 +28,38 @@ export default function ImgurToolkitConnected() {
 
 function FilesToolkitWrapper() {
   const userUploads = useUserUploads();
+  const [query, setQuery] = useState();
+  const [isSearching, setIsSearching] = useState(false);
 
   if (userUploads.__isLoading) {
     return null;
   } else {
     return (
       <div className={styles.wrapper}>
-        <FilesToolkitMenu />
-        <FilesImages uploads={userUploads} />
+        <FilesToolkitMenu
+          hasUploads={userUploads.length}
+          onIsOpen={setIsSearching}
+          onQuery={setQuery}
+        />
+        <FilesImages isSearching={isSearching} query={query} uploads={userUploads} />
       </div>
     );
   }
 }
 
-function FilesToolkitMenu({}) {
+function FilesToolkitMenu({ hasUploads, onIsOpen, onQuery }) {
   const el = window.document.getElementById('toolkit-menu');
 
   return el
     ? ReactDOM.createPortal(
         <>
-          <IconButton icon={<SearchSvg />} />
+          {hasUploads ? (
+            <FileSearch onIsOpen={onIsOpen} onQuery={onQuery}>
+              <IconButton icon={<SearchSvg />} />
+            </FileSearch>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center' }}>👉</div>
+          )}
           <Uploader redirectUrl={constants.ROUTES.TOOLKIT.FILES.UPLOAD}>
             <IconButton icon={<CloudUploadSvg />} />
           </Uploader>

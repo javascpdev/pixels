@@ -1,6 +1,10 @@
 const functions = require('firebase-functions');
 const context = require('./utilities/prod-context');
 
+// Auth
+const UserOnCreate = require('./src/auth/user.on-create');
+exports.userOnCreate = functions.auth.user().onCreate(UserOnCreate(context));
+
 // Firestore
 const UserUploadOnWrite = require('./src/firestore/user-upload.on-write');
 exports.userUploadOnWrite = functions.firestore

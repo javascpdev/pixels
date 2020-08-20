@@ -8,20 +8,21 @@ import copyToClipboard from '~/utilities/copy-to-clipboard';
 import effects from '~/effects';
 import styles from '../image-toolkits.module.css';
 import useAlert from '~/hooks/use-alert';
+import useAlgolia from '~/hooks/use-algolia';
 import useMultiSelect from '~/hooks/use-multi-select';
 
-export default function FilesImages({ uploads }) {
+export default function FilesImages({ isSearching, query, uploads }) {
   const [deleting, setDeleting] = useState(new Set());
   const addDeleting = useCallback((ids) =>
     setDeleting((deleting) => new Set([...deleting, ...ids]))
   );
   const ids = useMemo(() => uploads.map((u) => u.__id), [uploads]);
   const { deselectAll, getOnClick, selected } = useMultiSelect({ ids });
+  const searchResults = useAlgolia({ query, indexKey: 'uploads' });
+  const images = !!query ? searchResults.hits : uploads;
 
   return (
     <>
-      <h3>Images</h3>
-
       <FilesActionMenu
         addDeleting={addDeleting}
         deselectAll={deselectAll}
@@ -29,27 +30,36 @@ export default function FilesImages({ uploads }) {
         uploads={uploads}
       />
 
-      <ul className={styles.imageGrid}>
-        {uploads
-          .filter((image) => !deleting.has(image.__id))
-          .map((image) => {
-            const isSelected = selected.has(image.__id);
+      {!uploads.length ? (
+        <EmptyState />
+      ) : (
+        <ul className={styles.imageGrid}>
+          {images
+            .filter((image) => !deleting.has(image.__id))
+            .map((image, i) => {
+              const isSelected = selected.has(image.__id);
 
-            return (
-              <li key={image.__id} onClick={getOnClick(image.__id)}>
-                <GalleryImage
-                  alt={image.metadata.name}
-                  bytes={image.totalBytes}
-                  isSelected={isSelected}
-                  src={image.downloadURL}
-                  tags={image.tags}
-                />
-              </li>
-            );
-          })}
-      </ul>
+              return (
+                <li key={`${image.__id}-${i}`} onClick={getOnClick(image.__id)}>
+                  <GalleryImage
+                    alt={image.metadata.name}
+                    bytes={image.totalBytes}
+                    isSearching={isSearching}
+                    isSelected={isSelected}
+                    src={image.downloadURL}
+                    tags={image?._highlightResult?.tags || image.tags}
+                  />
+                </li>
+              );
+            })}
+        </ul>
+      )}
     </>
   );
+}
+
+function EmptyState() {
+  return <h2 style={{ textAlign: 'center' }}>Upload an image to get started</h2>;
 }
 
 function FilesActionMenu({ addDeleting, deselectAll, selected, uploads }) {
@@ -78,7 +88,7 @@ function FilesActionMenu({ addDeleting, deselectAll, selected, uploads }) {
 
     copyToClipboard(copyString);
 
-    console.log(copyString);
+    console.info(copyString);
 
     alert('copied');
   }, [alert, selectedUploads]);

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import getMegabytes from '~/utilities/get-megabytes';
 import styles from './gallery-image.module.css';
 
-export default function GalleryImage({ alt, bytes, isSelected, src, tags = [] }) {
+export default function GalleryImage({ alt, bytes, isSearching, isSelected, src, tags = [] }) {
   const imgRef = useRef();
   const isIntersecting = useIsIntersecting({ imgRef });
   const style = useMemo(() => ({ backgroundImage: isIntersecting ? `url(${src})` : '' }), [
@@ -12,13 +12,9 @@ export default function GalleryImage({ alt, bytes, isSelected, src, tags = [] })
   ]);
 
   return (
-    <div className={styles.wrapper} data-is-selected={isSelected}>
-      <ul>
-        {tags.map((tag) => (
-          <li key={`tag-${tag}`}>{tag}</li>
-        ))}
-        <li>{getMegabytes(bytes)}mb</li>
-      </ul>
+    <div className={styles.wrapper} data-is-searching={isSearching} data-is-selected={isSelected}>
+      <Tags bytes={bytes} tags={tags} />
+
       <img
         ref={imgRef}
         alt={alt}
@@ -26,6 +22,21 @@ export default function GalleryImage({ alt, bytes, isSelected, src, tags = [] })
         style={style}
       />
     </div>
+  );
+}
+
+function Tags({ bytes, tags }) {
+  return (
+    <ul>
+      {tags.map((tag) =>
+        tag.value ? (
+          <li key={`tag-${tag.value}`} dangerouslySetInnerHTML={{ __html: tag.value }} />
+        ) : (
+          <li key={`tag-${tag}`}>{tag}</li>
+        )
+      )}
+      <li>{getMegabytes(bytes)}mb</li>
+    </ul>
   );
 }
 

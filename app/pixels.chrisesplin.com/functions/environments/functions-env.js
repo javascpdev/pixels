@@ -44,6 +44,7 @@ module.exports = {
     APPLICATION_ID: 'TO2F04TXTS',
     INDICES: { UPLOADS: 'uploads' },
     PREFIX: config.algolia.prefix,
+    SEARCH_API_KEY: 'e37dcec3965d1cabde303b17e65d25f0',
   },
   FIREBASE: {
     PROJECT_ID: config.firebase.projectId,

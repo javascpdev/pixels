@@ -1,0 +1,23 @@
+.fileSearch {
+  display: flex;
+  align-items: center;
+}
+
+.fileSearch[data-is-open='true'] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: var(--color-light-background);
+}
+
+.fileSearch[data-is-open='false'] .search {
+  display: none;
+}
+
+.search {
+  flex: 1;
+  margin-left: 1em;
+}

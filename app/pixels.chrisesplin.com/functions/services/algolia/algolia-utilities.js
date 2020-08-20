@@ -7,11 +7,12 @@ module.exports = ({ environment }) => {
   );
 
   return {
-    initIndex: indexName =>
+    client,
+    initIndex: (indexName) =>
       client.initIndex(`${environment.ALGOLIA.PREFIX}:${indexName.replace(/\//g, '_')}`),
-    deleteObject: index => index.deleteObject.bind(index),
-    deleteObjects: index => index.deleteObjects.bind(index),
-    saveObject: index => index.saveObject.bind(index),
-    saveObjects: index => index.saveObjects.bind(index),
+    deleteObject: (index) => index.deleteObject.bind(index),
+    deleteObjects: (index) => index.deleteObjects.bind(index),
+    saveObject: (index) => index.saveObject.bind(index),
+    saveObjects: (index) => index.saveObjects.bind(index),
   };
 };

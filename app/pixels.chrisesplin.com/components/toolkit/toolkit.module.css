@@ -10,6 +10,7 @@
 
 .menus {
   display: flex;
+  position: relative;
   width: var(--dimensions-max-width);
 }
 
