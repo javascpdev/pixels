@@ -1,12 +1,17 @@
+import { BorderInnerSvg, FolderSvg } from '~/svg';
+
 import App from '~/app/app';
-import { Button } from '@rmwc/button';
-import { FolderSvg } from '~/svg';
 import Link from 'next/link';
 import Logo from '~/top-bar/logo';
 import Menu from '~/top-bar/menu';
 import Title from '~/top-bar/title';
 import constants from '~/constants';
 import styles from '~/css/dashboard.module.css';
+
+const SVG_DIMENSIONS = {
+  width: '3em',
+  height: '3em',
+};
 
 export default function Index() {
   return (
@@ -25,7 +30,13 @@ export default function Index() {
           alt="files logo"
           description="Files"
           href={constants.ROUTES.TOOLKIT.FILES.ROOT}
-          icon={<FolderSvg width="3em" height="3em" fill={constants.COLORS.MDC_THEME_SECONDARY} />}
+          icon={<FolderSvg {...SVG_DIMENSIONS} fill={constants.COLORS.MDC_THEME_SECONDARY} />}
+        />
+        <Toolkit
+          alt="guidelines logo"
+          description="Guidelines"
+          href={constants.ROUTES.TOOLKIT.GUIDELINES.ROOT}
+          icon={<BorderInnerSvg {...SVG_DIMENSIONS} fill={constants.COLORS.MDC_THEME_SECONDARY} />}
         />
       </div>
     </App>

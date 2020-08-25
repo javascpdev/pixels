@@ -25,6 +25,8 @@ export default {
     USER: {
       OAUTH2: `${LOCALFORAGE_PREFIX}-user-oauth2`,
       UPLOADS: `${LOCALFORAGE_PREFIX}-user-uploads`,
+      SELECTED_WORKSPACE: `${LOCALFORAGE_PREFIX}-selected-workspace`,
+      WORKSPACES: `${LOCALFORAGE_PREFIX}-workspaces`,
     },
   },
   META: {
@@ -67,6 +69,9 @@ export default {
       FILES: {
         ROOT: '/toolkit/files',
         UPLOAD: '/toolkit/files/upload',
+      },
+      GUIDELINES: {
+        ROOT: '/toolkit/guidelines',
       },
     },
   },

@@ -5,6 +5,7 @@ import Modal from './modal';
 import ProgressButton from '~/ui/progress-button';
 import ReactDOM from 'react-dom';
 import localforage from '~/localforage';
+import modalStyles from './modal.module.css';
 import styles from './uploader-modal.module.css';
 import useRouter from '~/hooks/use-router';
 
@@ -29,7 +30,7 @@ function UploaderModal({ base64, file, onClose, redirectUrl }) {
     <Modal onClose={onClose}>
       <>
         <img className={styles.preview} src={base64} alt="image to upload" />
-        <div className={styles.buttons}>
+        <div className={modalStyles.buttons}>
           <Button onClick={onClose}>Cancel</Button>
           <ProgressButton raised isWaiting={isUploading} onClick={upload}>
             Upload

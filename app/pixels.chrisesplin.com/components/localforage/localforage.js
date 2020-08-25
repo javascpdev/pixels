@@ -17,11 +17,17 @@ export const setImgurAlbums = createSetter(constants.LOCALFORAGE.IMGUR.ALBUMS);
 export const getImgurImages = createGetter(constants.LOCALFORAGE.IMGUR.IMAGES);
 export const setImgurImages = createSetter(constants.LOCALFORAGE.IMGUR.IMAGES);
 
+export const getSelectedWorkspace = createGetter(constants.LOCALFORAGE.USER.SELECTED_WORKSPACE);
+export const setSelectedWorkspace = createSetter(constants.LOCALFORAGE.USER.SELECTED_WORKSPACE);
+
 export const getUserOAuth2 = createGetter(constants.LOCALFORAGE.USER.OAUTH2);
 export const setUserOAuth2 = createSetter(constants.LOCALFORAGE.USER.OAUTH2);
 
 export const getUserUploads = createGetter(constants.LOCALFORAGE.USER.UPLOADS);
 export const setUserUploads = createSetter(constants.LOCALFORAGE.USER.UPLOADS);
+
+export const getUserWorkspaces = createGetter(constants.LOCALFORAGE.USER.WORKSPACES);
+export const setUserWorkspaces = createSetter(constants.LOCALFORAGE.USER.WORKSPACES);
 
 function createArrayItemGetter(key) {
   const getter = createGetter(key);

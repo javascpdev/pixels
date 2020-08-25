@@ -6,9 +6,11 @@ import { Head } from 'next/document';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import useImmer from '~/hooks/use-immer';
+import useServiceWorker from '~/hooks/use-service-worker';
 
 export default function App({ children, secure }) {
   useImmer();
+  useServiceWorker();
 
   return (
     <>

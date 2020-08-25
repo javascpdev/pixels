@@ -34,3 +34,20 @@
   max-height: 75vh;
   overflow: auto;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin-top: 2em;
+  width: 100%;
+}
+
+.form {
+  width: var(--dimensions-width);
+  max-width: var(--dimensions-max-width);
+}
+
+.form label {
+  width: 100%;
+}

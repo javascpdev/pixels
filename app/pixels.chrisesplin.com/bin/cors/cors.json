@@ -22,11 +22,5 @@
     "method": ["GET"],
     "responseHeader": ["Access-Control-Allow-Origin: *"],
     "maxAgeSeconds": 3600
-  },
-  {
-    "origin": ["http://localhost/"],
-    "method": ["GET"],
-    "responseHeader": ["Access-Control-Allow-Origin: *"],
-    "maxAgeSeconds": 3600
   }
 ]

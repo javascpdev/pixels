@@ -3,7 +3,16 @@ import getDataUrlFromSrc from '~/utilities/get-data-url-from-src';
 import schema from '~/schema';
 import { v4 as uuid } from 'uuid';
 
-export default async function upload({ base64, tags = [], uid, url }) {
+export default async function upload({
+  base64,
+  tags = [],
+  uid,
+  url,
+  imageMetadata = {
+    cacheControl: `public, max-age=${3600 * 24 * 365}`,
+    expires: `${new Date(Date.now() + 1000 * 60 * 60 * 24 * 365).toString()}`,
+  },
+}) {
   try {
     const userStorageRef = schema.getUserStorageRef(uid);
     let dataUrl = base64;
@@ -24,6 +33,8 @@ export default async function upload({ base64, tags = [], uid, url }) {
     const userUploadsRef = schema.getUserUploadRef(uid, record.metadata.name);
 
     await userUploadsRef.set(record);
+
+    await fileRef.updateMetadata(imageMetadata);
 
     return { record };
   } catch (error) {

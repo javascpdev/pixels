@@ -1,0 +1,7 @@
+{
+  "search.exclude": {
+    "**/.firebase/**": true,
+    "**/.next/**": true,
+    "**/out/**": true
+  }
+}
