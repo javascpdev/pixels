@@ -11,7 +11,7 @@ const DEFAULT_WORKSPACES = Object.assign([], { __isLoading: true });
 export const DEFAULT_WORKSPACE = {
   __id: 'default',
   name: 'Default Workspace',
-  guidelines: [],
+  guidelines: { x: [], y: [] },
   updated: 0,
 };
 
@@ -26,12 +26,13 @@ export default function UserWorkspacesProvider({ children }) {
     currentUser,
   ]);
   const selectWorkspace = useCallback(
-    async (id) => {
-      const workspace = workspaces.find((w) => w.__id == id);
+    async (id, updatedWorkspaces) => {
+      const workspace = (updatedWorkspaces || workspaces).find((w) => w.__id == id);
+      const workspaceId = workspace?.__id || DEFAULT_WORKSPACE.__id;
 
-      await localforage.setSelectedWorkspace(id);
+      await localforage.setSelectedWorkspace(workspaceId);
 
-      setWorkspace(workspace);
+      setWorkspace(workspace || DEFAULT_WORKSPACE);
     },
     [workspaces, setWorkspace]
   );
@@ -51,17 +52,17 @@ export default function UserWorkspacesProvider({ children }) {
       const localWorkspaces = workspaces.filter((w) => w.__id != id);
       const updatedWorkspaces = localWorkspaces.length ? localWorkspaces : [DEFAULT_WORKSPACE];
 
-      setWorkspace(updatedWorkspaces[0]);
+      selectWorkspace(updatedWorkspaces[0].__id);
       setWorkspaces(updatedWorkspaces);
 
       await localforage.setUserWorkspaces(updatedWorkspaces);
 
       await workspacesRef.child(id).remove();
     },
-    [setWorkspace, workspaces, workspacesRef]
+    [selectWorkspace, workspaces, workspacesRef]
   );
   const value = useValue({ deleteWorkspace, selectWorkspace, updateWorkspace, workspaces });
-  const workspaceValue = useValue({ workspace });
+  const workspaceValue = useValue({ updateWorkspace, workspace });
 
   useEffect(() => {
     if (workspacesRef) {
@@ -81,9 +82,8 @@ export default function UserWorkspacesProvider({ children }) {
         await workspacesRef.set(workspacesMap);
 
         const selectedId = await localforage.getSelectedWorkspace();
-        const selectedWorkspace = workspaces.find((w) => w.__id == selectedId) || DEFAULT_WORKSPACE;
 
-        setWorkspace(selectedWorkspace);
+        selectWorkspace(selectedId, workspaces);
       })();
     }
   }, [setWorkspace, setWorkspaces, workspacesRef]);
@@ -120,6 +120,7 @@ function mergeWorkspaces({ dbWorkspaces, localWorkspaces }) {
   return { workspaces, workspacesMap };
 }
 
+let TIMER;
 function getUpdateWorkspace({
   selectWorkspace,
   setWorkspace,
@@ -127,6 +128,7 @@ function getUpdateWorkspace({
   workspaces,
   workspacesRef,
 }) {
+
   return async (workspace, options = {}) => {
     const isNew = !workspace?.__id;
     const __id = isNew ? schema.getPushKey() : workspace.__id;
@@ -136,12 +138,6 @@ function getUpdateWorkspace({
       __id,
       updated: Date.now(),
     };
-    const isCurrentWorkspace = workspace.__id == updatedWorkspace.__id;
-
-    if (isCurrentWorkspace || options.shouldSelect) {
-      setWorkspace(updatedWorkspace);
-    }
-
     const updatedWorkspaces = produce(workspaces, (draft) => {
       const index = draft.findIndex((w) => w.__id == updatedWorkspace.__id);
 
@@ -153,18 +149,27 @@ function getUpdateWorkspace({
 
       return draft;
     });
+    const isCurrentWorkspace = workspace.__id == updatedWorkspace.__id;
+
+    if (isCurrentWorkspace || options.shouldSelect) {
+      selectWorkspace(__id, updatedWorkspaces);
+    }
 
     setWorkspaces(updatedWorkspaces);
 
-    try {
-      const workspacesMap = workspacesToMap(updatedWorkspaces);
+    await localforage.setUserWorkspaces(updatedWorkspaces);
 
-      await workspacesRef.update(workspacesMap);
+    try {
+      TIMER && clearTimeout(TIMER);
+
+      TIMER = setTimeout(async () => {
+        const workspacesMap = workspacesToMap(updatedWorkspaces);
+
+        await workspacesRef.update(workspacesMap);
+      }, 500);
     } catch (error) {
       console.error(error);
     }
-
-    await localforage.setUserWorkspaces(updatedWorkspaces);
 
     return updatedWorkspace;
   };

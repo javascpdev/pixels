@@ -1,3 +1,4 @@
+export { default as AddSvg } from './add';
 export { default as ArrowBackSvg } from './arrow-back';
 export { default as ArrowForwardSvg } from './arrow-forward';
 export { default as BorderInnerSvg } from './border-inner';

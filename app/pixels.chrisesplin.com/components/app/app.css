@@ -86,6 +86,11 @@ hr {
   border-width: var(--border-width) 0 0 0;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .flex {
   flex: 1;
 }
@@ -93,7 +98,7 @@ hr {
 #app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   min-height: calc(100vh - 4em);
   user-select: none;

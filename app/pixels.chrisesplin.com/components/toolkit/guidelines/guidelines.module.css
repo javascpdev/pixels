@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.guidelinesColumn {
+  text-align: center;
+  background: var(--mdc-theme-secondary-light);
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.guidelinesColumn li,
+.guidelinesColumn form {
+  display: flex;
+  align-items: center;
+}
+
+.guidelinesColumn input {
+  width: 4em;
+  height: 2em;
+  font-size: 1rem;
+  margin-right: 0.5em;
+  padding-left: 0.75em;
+  border-radius: 4px;
+  text-align: center;
+  border: none;
+}

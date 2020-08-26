@@ -6,9 +6,7 @@ import schema from '~/schema';
 import useCurrentUser from '~/hooks/use-current-user';
 import useValue from '~/hooks/use-value';
 
-const DEFAULT_USER_UPLOADS = [];
-
-DEFAULT_USER_UPLOADS.__isLoading = true;
+const DEFAULT_USER_UPLOADS = Object.assign([], { __isLoading: true });
 
 export const UserUploadsContext = React.createContext();
 
@@ -46,10 +44,10 @@ export default function UserUploadsProvider({ children, pageSize = 20 }) {
     },
     [setUserUploads, uploads]
   );
-  const filteredUploads = useMemo(() => uploads.filter((u) => !deleting.has(u.__id)), [
-    deleting,
-    uploads,
-  ]);
+  const filteredUploads = useMemo(
+    () => (!uploads.length ? uploads : uploads.filter((u) => !deleting.has(u.__id))),
+    [deleting, uploads]
+  );
   const value = useValue({ deleteUploads, isDone, reset, nextPage, uploads: filteredUploads });
 
   useEffect(() => {
