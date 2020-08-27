@@ -1,5 +1,7 @@
 .toolkits {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .toolkit {

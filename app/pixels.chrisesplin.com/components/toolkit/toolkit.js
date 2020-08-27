@@ -4,12 +4,13 @@ import Menu from '~/top-bar/menu';
 import React from 'react';
 import Title from '~/top-bar/title';
 import constants from '~/constants';
+import extensionConstants from '^/constants';
 import styles from './toolkit.module.css';
 
 export default function Toolkit({ children, icon, src, title }) {
   return (
     <>
-      <BackButton href={constants.ROUTES.DASHBOARD} />
+      <BackButton href={constants.ROUTES.DASHBOARD} view={extensionConstants.VIEWS.DASHBOARD} />
       <Logo icon={icon} src={src} />
       <Menu />
       <Title title={title} />

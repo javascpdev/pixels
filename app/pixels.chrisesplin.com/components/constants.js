@@ -12,6 +12,14 @@ export default {
   },
   FIREBASE: {
     SDK: '7.14.4',
+    apiKey: 'AIzaSyAMz8y2SRKAa5b0kX5hDrAoc51QrUoJioM',
+    appId: '1:1016700612579:web:ebbc0891bedaeb61957ad6',
+    authDomain: 'quiver-pixels-2020.firebaseapp.com',
+    databaseURL: 'https://quiver-pixels-2020.firebaseio.com',
+    measurementId: 'G-BLMVYW8WRM',
+    messagingSenderId: '1016700612579',
+    projectId: 'quiver-pixels-2020',
+    storageBucket: 'quiver-pixels-2020.appspot.com',
   },
   LOCALFORAGE: {
     BASE64_UPLOAD: `${LOCALFORAGE_PREFIX}-base64-upload`,

@@ -8,6 +8,7 @@
     "amatiasq.sort-imports",
     "clinyong.vscode-css-modules",
     "esbenp.prettier-vscode",
+    "richie5um2.vscode-sort-json",
     "toba.vsfire"
   ],
   "search.exclude": {

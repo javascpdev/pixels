@@ -1,21 +1,33 @@
+import React, { useCallback } from 'react';
+
 import { ArrowBackSvg } from '~/svg';
+import { IconButton } from '@rmwc/icon-button';
 import Link from 'next/link';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import constants from '~/constants';
+import useView from '__/hooks/use-view';
 
 export default function BackButtonPortal(props) {
-  if (!process.browser) {
-    return null;
+  const isServer = typeof window == 'undefined';
+  const isExtension = !isServer && location.protocol == 'chrome-extension:';
+  let node;
+
+  switch (true) {
+    case isServer:
+      break;
+    case isExtension:
+      node = <ExtensionBackButton {...props} />;
+      break;
+
+    default:
+      node = <WebBackButton {...props} />;
+      break;
   }
 
-  return ReactDOM.createPortal(
-    <BackButton {...props} />,
-    window.document.getElementById('back-button')
-  );
+  return node ? ReactDOM.createPortal(node, window.document.getElementById('back-button')) : null;
 }
 
-function BackButton({ href = constants.ROUTES.ROOT }) {
+function WebBackButton({ href = constants.ROUTES.ROOT }) {
   return (
     <Link href={href}>
       <a>
@@ -23,4 +35,13 @@ function BackButton({ href = constants.ROUTES.ROOT }) {
       </a>
     </Link>
   );
+}
+
+function ExtensionBackButton({ view = constants.VIEWS.DEFAULT }) {
+  const { navigate } = useView();
+  const onClick = useCallback(() => {
+    navigate(view);
+  }, [view, navigate]);
+
+  return <IconButton icon={<ArrowBackSvg />} onClick={onClick} />;
 }

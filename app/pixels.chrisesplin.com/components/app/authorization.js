@@ -1,16 +1,16 @@
+import { RootContext } from '~/contexts/root-context';
 import constants from '~/constants';
-import { currentUserAtom } from '~/state/atoms';
+import { useContext } from 'react';
 import { useEffect } from 'react';
 import useFirebase from '~/hooks/use-firebase';
 import useLoginRedirect from '~/hooks/use-login-redirect';
-import { useRecoilState } from 'recoil';
 import useRouter from '~/hooks/use-router';
 
 export default function Authorization({ secure }) {
   const firebase = useFirebase();
   const { redirect } = useRouter();
   const { setRedirectUrl } = useLoginRedirect();
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserAtom);
+  const { currentUser, setCurrentUser } = useContext(RootContext);
 
   useEffect(() => {
     if (secure && currentUser === null) {
