@@ -5,6 +5,9 @@ import produce from 'immer';
 export const getBase64Upload = createGetter(constants.LOCALFORAGE.BASE64_UPLOAD);
 export const setBase64Upload = createSetter(constants.LOCALFORAGE.BASE64_UPLOAD);
 
+export const getExtensionView = createGetter(constants.LOCALFORAGE.EXTENSION.VIEW);
+export const setExtensionView = createSetter(constants.LOCALFORAGE.EXTENSION.VIEW);
+
 export const getFileUpload = createGetter(constants.LOCALFORAGE.FILE_UPLOAD);
 export const setFileUpload = createSetter(constants.LOCALFORAGE.FILE_UPLOAD);
 

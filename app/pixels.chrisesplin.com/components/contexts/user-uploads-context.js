@@ -42,11 +42,11 @@ export default function UserUploadsProvider({ children, pageSize = 20 }) {
 
       await localforage.setUserUploads(newUploads);
     },
-    [setUserUploads, uploads]
+    [setUserUploads, uploads],
   );
   const filteredUploads = useMemo(
     () => (!uploads.length ? uploads : uploads.filter((u) => !deleting.has(u.__id))),
-    [deleting, uploads]
+    [deleting, uploads],
   );
   const value = useValue({ deleteUploads, isDone, reset, nextPage, uploads: filteredUploads });
 
@@ -58,7 +58,7 @@ export default function UserUploadsProvider({ children, pageSize = 20 }) {
       const query = uploadsRef.orderBy('created', 'desc').limit(1);
 
       disconnect = query.onSnapshot(
-        (snapshot) => !cancelled && handleNewSnapshot({ setUserUploads, snapshot, uploads })
+        (snapshot) => !cancelled && handleNewSnapshot({ setUserUploads, snapshot, uploads }),
       );
     }
 
@@ -82,14 +82,18 @@ export default function UserUploadsProvider({ children, pageSize = 20 }) {
 
 async function handleNewSnapshot({ setUserUploads, snapshot, uploads }) {
   const [uploadToAdd] = flattenSnapshot(snapshot);
-  const existingIds = new Set(uploads.map((u) => u.__id));
-  const exists = existingIds.has(uploadToAdd?.__id);
 
-  if (!exists && uploadToAdd) {
+  if (uploadToAdd) {
     let newUploads;
 
     setUserUploads((uploads) => {
-      newUploads = [uploadToAdd, ...uploads];
+      const existingIds = new Set(uploads.map((u) => u.__id));
+      const exists = existingIds.has(uploadToAdd?.__id);
+      const newUploads = uploads.splice(0);
+
+      if (!exists) {
+        newUploads.unshift(uploadToAdd);
+      }
 
       return newUploads;
     });

@@ -1,0 +1,15 @@
+.wrapper table {
+  font-size: 0.5em;
+  margin-bottom: 2em;
+  width: 400px;
+  max-width: var(--dimensions-max-width);
+}
+
+.wrapper th {
+  text-align: left;
+}
+
+.wrapper th:last-child,
+.wrapper td:last-child {
+  text-align: right;
+}

@@ -31,6 +31,10 @@
   margin: 0.25em 0.5em;
 }
 
+.wrapper[data-is-selected='false'] img {
+  outline: 0.5px auto var(--mdc-theme-secondary-light);
+}
+
 .wrapper[data-is-selected='true'] img {
   outline: 4px solid var(--mdc-theme-secondary);
   box-shadow: 2px 2px 10px -3px rgba(170, 170, 170, 1);

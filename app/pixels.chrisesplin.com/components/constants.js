@@ -26,6 +26,9 @@ export default {
     FILE_UPLOAD: `${LOCALFORAGE_PREFIX}-file-upload`,
     LOGIN_REDIRECT: `${LOCALFORAGE_PREFIX}-login-redirect`,
     OAUTH2: `${LOCALFORAGE_PREFIX}-oauth2`,
+    EXTENSION: {
+      VIEW: `${LOCALFORAGE_PREFIX}-extension-view`,
+    },
     IMGUR: {
       ALBUMS: `${LOCALFORAGE_PREFIX}-imgur-albums`,
       IMAGES: `${LOCALFORAGE_PREFIX}-imgur-images`,

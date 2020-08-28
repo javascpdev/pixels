@@ -5,7 +5,7 @@ import UploaderModal from '~/modals/uploader-modal';
 import styles from './uploader.module.css';
 import { v4 as uuid } from 'uuid';
 
-export default function Uploader({ children, redirectUrl }) {
+export default function Uploader({ children, redirectUrl, view }) {
   const id = useRef(uuid());
   const inputRef = useRef();
   const [file, setFile] = useState(null);
@@ -44,6 +44,7 @@ export default function Uploader({ children, redirectUrl }) {
         file={file}
         onClose={cancelUpload}
         redirectUrl={redirectUrl}
+        view={view}
       />
     </form>
   );
@@ -52,7 +53,7 @@ export default function Uploader({ children, redirectUrl }) {
 function UploaderDragAndDrop(props) {
   return ReactDOM.createPortal(
     <DropTarget {...props} />,
-    window.document.getElementById('uploader')
+    window.document.getElementById('uploader'),
   );
 }
 
@@ -69,7 +70,7 @@ function DropTarget({ isActive, setBase64, setFile, stopDragging }) {
         setFile(e.dataTransfer.files[0]);
       }
     },
-    [stopDragging]
+    [stopDragging],
   );
 
   return (
@@ -136,8 +137,8 @@ export async function extractFilesBase64(files) {
           if (file) {
             reader.readAsDataURL(file);
           }
-        })
-    )
+        }),
+    ),
   );
 }
 

@@ -12,7 +12,7 @@
 }
 
 .scrollArea {
-  max-height: calc(100vh - 9.75em);
+  max-height: calc(100vh - 7.75em);
   scrollbar-width: none !important;
 }
 

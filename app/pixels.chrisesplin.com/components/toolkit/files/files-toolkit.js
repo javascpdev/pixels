@@ -11,6 +11,7 @@ import Toolkit from '../toolkit';
 import Uploader from '~/ui/uploader';
 import UserUploadsProvider from '~/contexts/user-uploads-context';
 import constants from '~/constants';
+import extensionConstants from '^/constants';
 import styles from '../image-toolkits.module.css';
 import useUserUploads from '~/hooks/use-user-uploads';
 
@@ -73,14 +74,17 @@ function FilesToolkitMenu({ hasUploads, onIsOpen, onQuery }) {
           ) : (
             <div style={{ display: 'flex', alignItems: 'center' }}>👉</div>
           )}
-          <Uploader redirectUrl={constants.ROUTES.TOOLKIT.FILES.UPLOAD}>
+          <Uploader
+            redirectUrl={constants.ROUTES.TOOLKIT.FILES.UPLOAD}
+            view={extensionConstants.VIEWS.FILES.UPLOAD}
+          >
             <IconButton icon={<CloudUploadSvg />} />
           </Uploader>
           <BulkUploader>
             <IconButton icon={<CreateNewFolderSvg />} />
           </BulkUploader>
         </>,
-        el
+        el,
       )
     : null;
 }

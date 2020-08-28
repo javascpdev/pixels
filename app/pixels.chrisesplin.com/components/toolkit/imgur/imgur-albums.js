@@ -16,14 +16,12 @@ export default function ImgurAlbums({ albums }) {
           return (
             <li key={album.id}>
               <Card className={styles.card}>
-                <CardPrimaryAction>
-                  <GalleryImage src={coverSrc} alt={album.name} />
-                  <div className={styles.cardBody}>
-                    <h6 className={styles.title} title={album.title}>
-                      {album.title}
-                    </h6>
-                  </div>
-                </CardPrimaryAction>
+                <GalleryImage src={coverSrc} alt={album.name} />
+                <div className={styles.cardBody}>
+                  <h6 className={styles.title} title={album.title}>
+                    {album.title}
+                  </h6>
+                </div>
                 <CardActions>
                   <CardActionIcons>
                     <a href={`https://imgur.com/a/${album.id}`} target="_blank" rel="noopener">

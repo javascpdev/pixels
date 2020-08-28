@@ -14,6 +14,7 @@ import UserOAuth2Provider from '~/contexts/user-oauth2-context';
 import classnames from 'classnames';
 import constants from '~/constants';
 import effects from '~/effects';
+import extensionConstants from '^/constants';
 import styles from '../image-toolkits.module.css';
 import useCurrentUser from '~/hooks/use-current-user';
 import useImgurAlbums from '~/hooks/use-imgur-albums';
@@ -52,7 +53,7 @@ function ImgurToolkit() {
   const deleteOAuth2 = useCallback(
     () =>
       effects.deleteOAuth2({ serviceId: constants.OAUTH2.IMGUR.SERVICE_ID, uid: currentUser.uid }),
-    [currentUser]
+    [currentUser],
   );
   const { albums, isLoading: isRefreshingAlbums, refresh: refreshAlbums } = useImgurAlbums();
   const { images, isLoading: isRefreshingImages, refresh: refreshImages } = useImgurImages();
@@ -62,7 +63,7 @@ function ImgurToolkit() {
   ]);
   const refreshClassName = useMemo(
     () => classnames({ spinning: isRefreshingAlbums || isRefreshingImages }),
-    [isRefreshingAlbums, isRefreshingImages]
+    [isRefreshingAlbums, isRefreshingImages],
   );
 
   return (
@@ -101,12 +102,15 @@ function ImgurToolkitMenu({ refresh, refreshClassName, deleteOAuth2 }) {
       >
         <IconButton icon={<SearchSvg />} />
       </a>
-      <Uploader redirectUrl={constants.ROUTES.TOOLKIT.IMGUR.UPLOAD}>
+      <Uploader
+        redirectUrl={constants.ROUTES.TOOLKIT.IMGUR.UPLOAD}
+        view={extensionConstants.VIEWS.IMGUR.UPLOAD}
+      >
         <IconButton icon={<CloudUploadSvg />} />
       </Uploader>
       <IconButton icon={<PowerOffSvg />} onClick={deleteOAuth2} />
       <IconButton icon={<RefreshSvg className={refreshClassName} />} onClick={refresh} />
     </>,
-    window.document.getElementById('toolkit-menu')
+    window.document.getElementById('toolkit-menu'),
   );
 }

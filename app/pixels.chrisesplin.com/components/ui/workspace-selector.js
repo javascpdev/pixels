@@ -29,7 +29,7 @@ export default function WorkspaceSelector() {
         await selectWorkspace(value);
       }
     },
-    [setIsEditing, selectWorkspace]
+    [setIsEditing, selectWorkspace],
   );
   const onEdit = useCallback(() => (setIsNew(false), setIsEditing(true)), [setIsEditing]);
   const onClose = useCallback(() => setIsEditing(false), [setIsEditing]);
@@ -37,9 +37,9 @@ export default function WorkspaceSelector() {
     () =>
       workspaces.reduce(
         (acc, workspace) => acc.concat([{ value: workspace.__id, label: workspace.name }]),
-        [{ value: NEW_WORKSPACE_VALUE, label: 'Create new workspace' }]
+        [{ value: NEW_WORKSPACE_VALUE, label: 'Create new workspace' }],
       ),
-    [workspace?.__id, workspaces]
+    [workspace?.__id, workspaces],
   );
   const workspaceToEdit = useMemo(() => (isNew ? {} : workspace), [isNew, workspace]);
 
@@ -48,13 +48,7 @@ export default function WorkspaceSelector() {
       <EditWorkspaceModal isOpen={isEditing} onClose={onClose} workspace={workspaceToEdit} />
       <IconButton icon={<CreateSvg />} onClick={onEdit} />
       {!isEditing && (
-        <Select
-          label="Workspaces"
-          outlined
-          value={workspace?.__id}
-          onChange={onChange}
-          options={options}
-        />
+        <Select outlined value={workspace?.__id} onChange={onChange} options={options} />
       )}
     </>
   );

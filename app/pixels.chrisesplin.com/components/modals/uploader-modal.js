@@ -4,10 +4,14 @@ import { Button } from '@rmwc/button';
 import Modal from './modal';
 import ProgressButton from '~/ui/progress-button';
 import ReactDOM from 'react-dom';
+import getEnvironment from '~/utilities/get-environment';
 import localforage from '~/localforage';
 import modalStyles from './modal.module.css';
 import styles from './uploader-modal.module.css';
 import useRouter from '~/hooks/use-router';
+import useView from '__/hooks/use-view';
+
+const { IS_EXTENSION } = getEnvironment();
 
 export default function UploaderModalPortal({ isOpen, ...props }) {
   return isOpen
@@ -15,16 +19,20 @@ export default function UploaderModalPortal({ isOpen, ...props }) {
     : null;
 }
 
-function UploaderModal({ base64, file, onClose, redirectUrl }) {
+function UploaderModal({ base64, file, onClose, redirectUrl, view }) {
   const { redirect } = useRouter();
+  const { navigate } = useView();
   const [isUploading, setIsUploading] = useState(false);
   const upload = useCallback(async () => {
     await localforage.setBase64Upload(base64);
     await localforage.setFileUpload(file);
 
     setIsUploading(false);
-    redirect(redirectUrl);
-  }, [base64, file, onClose, redirect, redirectUrl, setIsUploading]);
+
+    console.log({ IS_EXTENSION, view });
+
+    IS_EXTENSION ? navigate(view) : redirect(redirectUrl);
+  }, [base64, file, onClose, redirect, redirectUrl, navigate, setIsUploading, view]);
 
   return (
     <Modal onClose={onClose}>

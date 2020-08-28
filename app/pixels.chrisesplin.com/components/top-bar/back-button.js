@@ -5,21 +5,20 @@ import { IconButton } from '@rmwc/icon-button';
 import Link from 'next/link';
 import ReactDOM from 'react-dom';
 import constants from '~/constants';
+import extensionConstants from '^/constants';
+import getEnvironment from '~/utilities/get-environment';
 import useView from '__/hooks/use-view';
 
+const { IS_EXTENSION, IS_BROWSER } = getEnvironment();
+
 export default function BackButtonPortal(props) {
-  const isServer = typeof window == 'undefined';
-  const isExtension = !isServer && location.protocol == 'chrome-extension:';
   let node;
 
   switch (true) {
-    case isServer:
-      break;
-    case isExtension:
+    case IS_EXTENSION:
       node = <ExtensionBackButton {...props} />;
       break;
-
-    default:
+    case IS_BROWSER:
       node = <WebBackButton {...props} />;
       break;
   }
@@ -37,7 +36,7 @@ function WebBackButton({ href = constants.ROUTES.ROOT }) {
   );
 }
 
-function ExtensionBackButton({ view = constants.VIEWS.DEFAULT }) {
+function ExtensionBackButton({ view = extensionConstants.VIEWS.DEFAULT }) {
   const { navigate } = useView();
   const onClick = useCallback(() => {
     navigate(view);

@@ -5,12 +5,14 @@ import { LinearProgress } from '@rmwc/linear-progress';
 import Modal from './modal';
 import ProgressButton from '~/ui/progress-button';
 import ReactDOM from 'react-dom';
+import classnames from 'classnames';
 import effects from '~/effects';
 import { extractFilesBase64 } from '~/ui/uploader';
 import getFilenameTags from '~/utilities/get-filename-tags';
 import getMegabytes from '~/utilities/get-megabytes';
 import modalStyles from './modal.module.css';
-import styles from './uploader-modal.module.css';
+import styles from './bulk-upload-modal.module.css';
+import uploaderStyles from './uploader-modal.module.css';
 import useCurrentUser from '~/hooks/use-current-user';
 
 export default function BulkUploadModalPortal({ isOpen, ...props }) {
@@ -29,7 +31,7 @@ function BulkUploadModal({ files, onClose }) {
     const filesBase64 = await extractFilesBase64(files);
     const uploadRecords = files.reduce(
       (acc, file, i) => acc.concat([{ base64: filesBase64[i], tags: getFilenameTags(file.name) }]),
-      []
+      [],
     );
     let i = uploadRecords.length;
 
@@ -51,8 +53,8 @@ function BulkUploadModal({ files, onClose }) {
         <UploadingState uploadedCount={uploadedCount} total={files.length} />
       ) : (
         <>
-          <div className={modalStyles.scroll}>
-            <table style={{ fontSize: '0.5em' }}>
+          <div className={classnames(styles.wrapper, modalStyles.scroll)}>
+            <table>
               <thead>
                 <tr>
                   <th>#</th>
@@ -74,11 +76,11 @@ function BulkUploadModal({ files, onClose }) {
             </table>
           </div>
 
-          <div className={styles.buttons}>
-            <Button onClick={onClose}>Cancel</Button>
+          <div className={modalStyles.buttons}>
             <ProgressButton raised isWaiting={isUploading} onClick={onUpload}>
               Upload
             </ProgressButton>
+            <Button onClick={onClose}>Cancel</Button>
           </div>
         </>
       )}
