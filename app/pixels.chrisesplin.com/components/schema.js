@@ -16,6 +16,7 @@ export default {
   getUserOAuth2ItemRef: (uid, serviceId) =>
     db().collection('users').doc(uid).collection('oauth2').doc(serviceId),
   getUserStorageRef: (uid) => storage().ref(uid),
+  getUserTabsRef: (uid) => rtdb().ref('users').child(uid).child('tabs'),
   getUserUploadRef: (uid, uploadId) =>
     db().collection('users').doc(uid).collection('uploads').doc(uploadId),
   getUserUploadsRef: (uid) => db().collection('users').doc(uid).collection('uploads'),

@@ -1,9 +1,10 @@
-import { AddSvg, BorderInnerSvg, CloseSvg } from '~/svg';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import { IconButton } from '@rmwc/icon-button';
+import { BorderInnerSvg } from '~/svg';
+import GuidelinesColumn from './guidelines-column';
+import GuidelinesTabs from './guidelines-tabs';
 import ReactDOM from 'react-dom';
-import { TextField } from '@rmwc/textfield';
+import TabsProvider from '~/contexts/tabs-context';
 import Toolkit from '../toolkit';
 import UserWorkspacesProvider from '~/contexts/user-workspaces-context';
 import WorkspaceSelector from '~/ui/workspace-selector';
@@ -13,11 +14,10 @@ import getEnvironment from '~/utilities/get-environment';
 import produce from 'immer';
 import styles from './guidelines.module.css';
 import useWorkspace from '~/hooks/use-workspace';
-import { v4 as uuid } from 'uuid';
 
 const { IS_EXTENSION, IS_BROWSER, IS_SERVER } = getEnvironment();
 
-export default function ImgurToolkitConnected() {
+export default function GuidelinesToolkitConnected() {
   return (
     <Toolkit
       icon={
@@ -31,6 +31,10 @@ export default function ImgurToolkitConnected() {
           <GuidelinesToolkitWrapper />
         </>
       </UserWorkspacesProvider>
+
+      <TabsProvider>
+        <GuidelinesTabs />
+      </TabsProvider>
     </Toolkit>
   );
 }
@@ -58,77 +62,6 @@ function GuidelinesToolkitWrapper() {
     >
       <GuidelinesColumn columnName="x" lines={workspace.guidelines.x} onChange={getOnChange('x')} />
       <GuidelinesColumn columnName="y" lines={workspace.guidelines.y} onChange={getOnChange('y')} />
-    </div>
-  );
-}
-
-function GuidelinesColumn({ columnName, lines, onChange }) {
-  const newLineInputRef = useRef();
-  const onAdd = useCallback(
-    (e) => {
-      e.preventDefault();
-
-      const value = newLineInputRef.current.value;
-      const updatedLines = [...lines, { id: uuid(), value }];
-
-      onChange(updatedLines);
-    },
-    [lines, onChange],
-  );
-  const getLineOnChange = useCallback(
-    (id) => (e) => {
-      const value = e.target.value;
-      const lineIndex = lines.findIndex((l) => l.id == id);
-      const updatedLines = produce(lines, (draft) => {
-        draft[lineIndex] = { id, value };
-      });
-
-      onChange(updatedLines);
-    },
-    [lines, onChange],
-  );
-  const getLineOnDelete = useCallback(
-    (id) => () => {
-      const lineIndex = lines.findIndex((l) => l.id == id);
-      const updatedLines = produce(lines, (draft) => {
-        draft.splice(lineIndex, 1);
-      });
-
-      onChange(updatedLines);
-    },
-    [lines, onChange],
-  );
-  const onFocus = useCallback((e) => e.target.select());
-
-  return (
-    <div className={styles.guidelinesColumn}>
-      <h2>{columnName}</h2>
-
-      <ul>
-        <li key={`add-${columnName}`} className={styles.addWrapper}>
-          <form onSubmit={onAdd}>
-            <input ref={newLineInputRef} type="number" min={0} defaultValue={0} onFocus={onFocus} />
-            <IconButton type="submit" icon={<AddSvg fill="var(--mdc-theme-primary-dark)" />} />
-          </form>
-        </li>
-        {lines?.map((line) => {
-          return (
-            <li key={line.id}>
-              <input
-                type="number"
-                min={0}
-                value={line.value}
-                onChange={getLineOnChange(line.id)}
-                onFocus={onFocus}
-              />
-              <IconButton
-                icon={<CloseSvg fill="var(--mdc-theme-primary-dark)" />}
-                onClick={getLineOnDelete(line.id)}
-              />
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }

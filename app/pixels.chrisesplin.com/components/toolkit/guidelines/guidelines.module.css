@@ -57,3 +57,24 @@
   width: 0.75em !important;
   height: 0.75em !important;
 }
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabs table {
+  font-size: 14px;
+}
+
+.tabs input {
+  font-size: 16px;
+  padding: 0.25em;
+  width: 4em;
+  text-align: center;
+}
+
+.tabs .favicon {
+  width: 1em;
+}
