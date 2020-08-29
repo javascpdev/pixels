@@ -29,8 +29,6 @@ function UploaderModal({ base64, file, onClose, redirectUrl, view }) {
 
     setIsUploading(false);
 
-    console.log({ IS_EXTENSION, view });
-
     IS_EXTENSION ? navigate(view) : redirect(redirectUrl);
   }, [base64, file, onClose, redirect, redirectUrl, navigate, setIsUploading, view]);
 

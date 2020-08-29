@@ -8,9 +8,15 @@ import Link from 'next/link';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import constants from '~/constants';
+import extensionConstants from '^/constants';
+import getEnvironment from '~/utilities/get-environment';
 import styles from './user-drawer.module.css';
 import useCurrentUser from '~/hooks/use-current-user';
+import useFirebase from '~/hooks/use-firebase';
 import useKeyup from '~/hooks/use-keyup';
+import useView from '__/hooks/use-view';
+
+const { IS_EXTENSION } = getEnvironment();
 
 export default React.memo((props) => {
   if (!process.browser) {
@@ -30,7 +36,7 @@ function UserDrawer({ isOpen, onClose }) {
 
       isEscape && onClose();
     },
-    [onClose]
+    [onClose],
   );
   const title = currentUser.displayName || <span>&nbsp;</span>;
   const subtitle = currentUser.email;
@@ -54,18 +60,32 @@ function UserDrawer({ isOpen, onClose }) {
           </div>
         </DrawerHeader>
         <DrawerContent dir="ltr">
-          <List onClick={onClose}>
-            <ListItems />
-          </List>
+          <List onClick={onClose}>{IS_EXTENSION ? <ExtensionListItems /> : <WebListItems />}</List>
         </DrawerContent>
       </div>
     </Drawer>
   );
 }
 
-function ListItems() {
-  const currentUser = useCurrentUser();
+function ExtensionListItems() {
+  const { navigate } = useView();
+  const firebase = useFirebase();
+  const onLogOutClick = useCallback(() => {
+    firebase.auth().signOut();
 
+    navigate(extensionConstants.VIEWS.LOGIN);
+  }, [firebase, navigate]);
+
+  return (
+    <>
+      <hr />
+
+      <ListItem onClick={onLogOutClick}>Log Out</ListItem>
+    </>
+  );
+}
+
+function WebListItems() {
   return (
     <>
       <hr />

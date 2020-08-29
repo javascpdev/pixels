@@ -49,13 +49,7 @@ function Toolkit({ alt, description, href, icon = null, src, view }) {
   return (
     <div className={styles.toolkit}>
       {IS_EXTENSION ? (
-        <span
-          className={styles.gridWrapper}
-          onClick={() => {
-            console.log('navigate view', view);
-            navigate(view);
-          }}
-        >
+        <span className={styles.gridWrapper} onClick={() => navigate(view)}>
           <ToolkitGridItem src={src} alt={alt} icon={icon} description={description} />
         </span>
       ) : (

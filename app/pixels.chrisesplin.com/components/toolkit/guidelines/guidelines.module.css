@@ -21,10 +21,39 @@
 .guidelinesColumn input {
   width: 4em;
   height: 2em;
-  font-size: 1rem;
+  font-size: 1em;
   margin-right: 0.5em;
   padding-left: 0.75em;
   border-radius: 4px;
   text-align: center;
   border: none;
+}
+
+.browser li {
+  /* font-size: 0.6em; */
+  margin-bottom: 0.75em;
+}
+
+.extension {
+  --mdc-ripple-top: 1em;
+  --mdc-ripple-left: 1em;
+}
+
+.extension button {
+  width: 2em !important;
+  height: 2em !important;
+  margin-bottom: -0.25em;
+  margin-top: -0.25em;
+}
+
+.extension button:before {
+  width: 0.75em !important;
+  height: 0.75em !important;
+  top: calc(50% - 9px) !important;
+  left: calc(50% - 9.5px) !important;
+}
+
+.extension svg {
+  width: 0.75em !important;
+  height: 0.75em !important;
 }

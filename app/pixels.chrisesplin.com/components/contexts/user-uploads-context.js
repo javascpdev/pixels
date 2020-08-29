@@ -89,7 +89,7 @@ async function handleNewSnapshot({ setUserUploads, snapshot, uploads }) {
     setUserUploads((uploads) => {
       const existingIds = new Set(uploads.map((u) => u.__id));
       const exists = existingIds.has(uploadToAdd?.__id);
-      const newUploads = uploads.splice(0);
+      const newUploads = [...uploads];
 
       if (!exists) {
         newUploads.unshift(uploadToAdd);

@@ -7,11 +7,15 @@ import { TextField } from '@rmwc/textfield';
 import Toolkit from '../toolkit';
 import UserWorkspacesProvider from '~/contexts/user-workspaces-context';
 import WorkspaceSelector from '~/ui/workspace-selector';
+import classnames from 'classnames';
 import constants from '~/constants';
+import getEnvironment from '~/utilities/get-environment';
 import produce from 'immer';
 import styles from './guidelines.module.css';
 import useWorkspace from '~/hooks/use-workspace';
 import { v4 as uuid } from 'uuid';
+
+const { IS_EXTENSION, IS_BROWSER, IS_SERVER } = getEnvironment();
 
 export default function ImgurToolkitConnected() {
   return (
@@ -45,7 +49,13 @@ function GuidelinesToolkitWrapper() {
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={classnames(styles.wrapper, {
+        [styles.extension]: IS_EXTENSION,
+        [styles.browser]: IS_BROWSER,
+        [styles.browser]: IS_SERVER,
+      })}
+    >
       <GuidelinesColumn columnName="x" lines={workspace.guidelines.x} onChange={getOnChange('x')} />
       <GuidelinesColumn columnName="y" lines={workspace.guidelines.y} onChange={getOnChange('y')} />
     </div>
@@ -97,17 +107,11 @@ function GuidelinesColumn({ columnName, lines, onChange }) {
       <ul>
         <li key={`add-${columnName}`} className={styles.addWrapper}>
           <form onSubmit={onAdd}>
-            <input
-              ref={newLineInputRef}
-              type="number"
-              min={0}
-              defaultValue={50}
-              onFocus={onFocus}
-            />
+            <input ref={newLineInputRef} type="number" min={0} defaultValue={0} onFocus={onFocus} />
             <IconButton type="submit" icon={<AddSvg fill="var(--mdc-theme-primary-dark)" />} />
           </form>
         </li>
-        {lines.map((line) => {
+        {lines?.map((line) => {
           return (
             <li key={line.id}>
               <input

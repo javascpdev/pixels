@@ -18,7 +18,7 @@ export default class CustomDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <link rel="stylesheet" href="https://use.typekit.net/zgw6lpd.css" />
         </Head>
-        <body>
+        <body id="web">
           <div id="top-bar">
             <div id="back-button" />
             <div id="logo" />
