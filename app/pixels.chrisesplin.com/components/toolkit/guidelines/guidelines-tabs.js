@@ -1,5 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { Button } from '@rmwc/button';
+import classnames from 'classnames';
 import getEnvironment from '~/utilities/get-environment';
 import produce from 'immer';
 import styles from './guidelines.module.css';
@@ -7,53 +9,74 @@ import useDebouncedValue from '~/hooks/use-debounced-value';
 import useTabs from '~/hooks/use-tabs';
 import useValue from '~/hooks/use-value';
 
-const { IS_EXTENSION } = getEnvironment();
-const DEFAULT_OFFSETS = { x: 0, y: 0 };
+const { IS_EXTENSION, IS_BROWSER, IS_SERVER } = getEnvironment();
+const DEFAULT_WORKSPACE_TAB = { x: 0, y: 0, active: false };
 const DEFAULT_LOCAL_OFFSETS = [];
 
 export default function GuidelinesTabs() {
-  const { getOnOffsetChange, localOffsets, tabs } = useLocalTabs();
-
-  /**
-   * TODO: 
-   * [ ] Click a button to reset the tabs
-   * [ ] Refactor offsets into their own data structure so that adding/deleting tabs 
-   *     doesn't blow them all away
-   */
+  const { resetWorkspace, tabs, workspaceTabs } = useTabs();
+  const { getWorkspaceTabChanged, localOffsets } = useLocalTabs();
+  const resetDisabled = useMemo(() => !Object.keys(workspaceTabs || {}).length, [workspaceTabs]);
 
   return (
-    <div className={styles.tabs}>
-      <h1>TABS</h1>
-      {!IS_EXTENSION && <OpenDevToolsPrompt />}
+    <div
+      className={classnames(styles.tabs, {
+        [styles.extension]: IS_EXTENSION,
+        [styles.browser]: IS_BROWSER,
+        [styles.browser]: IS_SERVER,
+      })}
+    >
+      <h1>Tab</h1>
+
       <table>
         <thead>
           <tr>
+            <th>active</th>
             <th>x offset</th>
             <th>y offset</th>
             <th></th>
-            <th></th>
+            <th className={styles.actionsRow}>
+              {!IS_EXTENSION && <OpenDevToolsPrompt />}
+
+              <Button
+                outlined
+                className={styles.resetButton}
+                onClick={resetWorkspace}
+                disabled={resetDisabled}
+              >
+                Reset
+              </Button>
+            </th>
           </tr>
         </thead>
         <tbody>
-          {tabs.map((tab, index) => {
-            const offsets = localOffsets[index] || tab.offsets || {};
+          {tabs.map((tab, i) => {
+            const { x: xOffset, y: yOffset, active } =
+              localOffsets[tab.id] || (workspaceTabs && workspaceTabs[tab.id]) || {};
 
             return (
-              <tr key={index}>
+              <tr key={i}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={active || false}
+                    onChange={getWorkspaceTabChanged({ key: 'active', tab })}
+                  />
+                </td>
                 <td>
                   <input
                     type="number"
                     placeholder="x"
-                    value={offsets.x || 0}
-                    onChange={getOnOffsetChange({ index, key: 'x', tab })}
+                    value={xOffset || 0}
+                    onChange={getWorkspaceTabChanged({ key: 'x', tab })}
                   />
                 </td>
                 <td>
                   <input
                     type="number"
                     placeholder="y"
-                    value={offsets.y || 0}
-                    onChange={getOnOffsetChange({ index, key: 'y', tab })}
+                    value={yOffset || 0}
+                    onChange={getWorkspaceTabChanged({ key: 'y', tab })}
                   />
                 </td>
                 <td>
@@ -74,21 +97,26 @@ function OpenDevToolsPrompt() {
 }
 
 function useLocalTabs() {
-  const { tabs, updateTabs } = useTabs();
+  const { workspaceTabs, updateWorkspaceTabs } = useTabs();
   const [localOffsets, setLocalOffsets] = useState(DEFAULT_LOCAL_OFFSETS);
-  const getOnOffsetChange = useCallback(
-    ({ index, key, tab }) => (e) => {
-      const offsets = { ...(tab.offsets || DEFAULT_OFFSETS) };
+  const getWorkspaceTabChanged = useCallback(
+    ({ key, tab }) => (e) => {
+      const existingTab = workspaceTabs && workspaceTabs[tab.id];
+      const updatedOffsets = { ...(existingTab || DEFAULT_WORKSPACE_TAB) };
 
-      offsets[key] = +e.target.value;
+      if (key == 'active') {
+        updatedOffsets[key] = e.target.checked;
+      } else {
+        updatedOffsets[key] = e.target.value;
+      }
 
       setLocalOffsets((localOffsets) =>
         produce(localOffsets, (draft) => {
-          draft[index] = offsets;
+          draft[tab.id] = updatedOffsets;
         }),
       );
     },
-    [setLocalOffsets],
+    [workspaceTabs, setLocalOffsets],
   );
   const debouncedLocalOffsets = useDebouncedValue(localOffsets, 500);
 
@@ -102,18 +130,18 @@ function useLocalTabs() {
         const offsets = debouncedLocalOffsets[i];
 
         if (offsets) {
-          updates[`${i}/offsets`] = offsets;
+          updates[i] = offsets;
           isDirty = true;
         }
       }
 
-      isDirty && (await updateTabs(updates));
+      isDirty && (await updateWorkspaceTabs(updates));
     })();
-  }, [debouncedLocalOffsets, updateTabs]);
+  }, [debouncedLocalOffsets, updateWorkspaceTabs]);
 
   useEffect(() => {
     setLocalOffsets(DEFAULT_LOCAL_OFFSETS);
-  }, [setLocalOffsets, tabs]);
+  }, [setLocalOffsets, workspaceTabs]);
 
-  return useValue({ getOnOffsetChange, localOffsets, tabs });
+  return useValue({ getWorkspaceTabChanged, localOffsets });
 }

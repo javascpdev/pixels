@@ -12,6 +12,7 @@ export const DEFAULT_WORKSPACE = {
   __id: 'default',
   name: 'Default Workspace',
   guidelines: { x: [], y: [] },
+  tabs: {},
   updated: 0,
 };
 
@@ -25,6 +26,7 @@ export default function UserWorkspacesProvider({ children }) {
   const workspacesRef = useMemo(() => currentUser && schema.getUserWorkspacesRef(currentUser.uid), [
     currentUser,
   ]);
+  const dbWorkspaces = useDbWorkspaces(workspacesRef);
   const selectWorkspace = useCallback(
     async (id, updatedWorkspaces) => {
       const workspace = (updatedWorkspaces || workspaces).find((w) => w.__id == id);
@@ -34,7 +36,7 @@ export default function UserWorkspacesProvider({ children }) {
 
       setWorkspace(workspace || DEFAULT_WORKSPACE);
     },
-    [workspaces, setWorkspace]
+    [workspaces, setWorkspace],
   );
   const updateWorkspace = useCallback(
     getUpdateWorkspace({
@@ -45,7 +47,7 @@ export default function UserWorkspacesProvider({ children }) {
       workspaces,
       workspacesRef,
     }),
-    [selectWorkspace, setWorkspace, setWorkspaces, workspace, workspaces, workspacesRef]
+    [selectWorkspace, setWorkspace, setWorkspaces, workspace, workspaces, workspacesRef],
   );
   const deleteWorkspace = useCallback(
     async (id) => {
@@ -59,7 +61,7 @@ export default function UserWorkspacesProvider({ children }) {
 
       await workspacesRef.child(id).remove();
     },
-    [selectWorkspace, workspaces, workspacesRef]
+    [selectWorkspace, workspaces, workspacesRef],
   );
   const value = useValue({ deleteWorkspace, selectWorkspace, updateWorkspace, workspaces });
   const workspaceValue = useValue({ updateWorkspace, workspace });
@@ -67,7 +69,6 @@ export default function UserWorkspacesProvider({ children }) {
   useEffect(() => {
     if (workspacesRef) {
       (async () => {
-        const dbWorkspaces = (await getDbWorkspaces(workspacesRef)) || {};
         const localWorkspaces = (await localforage.getUserWorkspaces()) || [DEFAULT_WORKSPACE];
         const localWorkspacesWithDefault = localWorkspaces.length
           ? localWorkspaces
@@ -86,7 +87,7 @@ export default function UserWorkspacesProvider({ children }) {
         selectWorkspace(selectedId, workspaces);
       })();
     }
-  }, [setWorkspace, setWorkspaces, workspacesRef]);
+  }, [dbWorkspaces, setWorkspace, setWorkspaces, workspacesRef]);
 
   return (
     <UserWorkspacesContext.Provider value={value}>
@@ -95,10 +96,17 @@ export default function UserWorkspacesProvider({ children }) {
   );
 }
 
-async function getDbWorkspaces(ref) {
-  const snapshot = await ref.once('value');
+function useDbWorkspaces(ref) {
+  const [workspaces, setWorkspaces] = useState([]);
+  const refExists = !!ref;
 
-  return flattenRtdb(snapshot);
+  useEffect(
+    () =>
+      ref && ref.on('value', (snapshot) => snapshot && setWorkspaces(() => flattenRtdb(snapshot))),
+    [refExists],
+  );
+
+  return workspaces;
 }
 
 function mergeWorkspaces({ dbWorkspaces, localWorkspaces }) {
@@ -128,7 +136,6 @@ function getUpdateWorkspace({
   workspaces,
   workspacesRef,
 }) {
-
   return async (workspace, options = {}) => {
     const isNew = !workspace?.__id;
     const __id = isNew ? schema.getPushKey() : workspace.__id;

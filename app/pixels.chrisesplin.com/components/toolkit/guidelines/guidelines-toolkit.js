@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { BorderInnerSvg } from '~/svg';
+import { DEFAULT_WORKSPACE } from '~/contexts/user-workspaces-context';
 import GuidelinesColumn from './guidelines-column';
 import GuidelinesTabs from './guidelines-tabs';
 import ReactDOM from 'react-dom';
@@ -29,12 +30,11 @@ export default function GuidelinesToolkitConnected() {
         <>
           <GuidelinesToolkitMenu />
           <GuidelinesToolkitWrapper />
+          <TabsProvider>
+            <GuidelinesTabs />
+          </TabsProvider>
         </>
       </UserWorkspacesProvider>
-
-      <TabsProvider>
-        <GuidelinesTabs />
-      </TabsProvider>
     </Toolkit>
   );
 }
@@ -51,6 +51,8 @@ function GuidelinesToolkitWrapper() {
     },
     [workspace],
   );
+  const xLines = workspace.guidelines?.x || DEFAULT_WORKSPACE.guidelines.x;
+  const yLines = workspace.guidelines?.y || DEFAULT_WORKSPACE.guidelines.y;
 
   return (
     <div
@@ -60,8 +62,8 @@ function GuidelinesToolkitWrapper() {
         [styles.browser]: IS_SERVER,
       })}
     >
-      <GuidelinesColumn columnName="x" lines={workspace.guidelines.x} onChange={getOnChange('x')} />
-      <GuidelinesColumn columnName="y" lines={workspace.guidelines.y} onChange={getOnChange('y')} />
+      <GuidelinesColumn columnName="x" lines={xLines} onChange={getOnChange('x')} />
+      <GuidelinesColumn columnName="y" lines={yLines} onChange={getOnChange('y')} />
     </div>
   );
 }
