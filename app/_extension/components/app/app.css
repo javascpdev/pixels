@@ -1,0 +1,37 @@
+body#extension {
+  font-size: 3vw;
+}
+
+@media (max-width: 300px) {
+  body#extension {
+    font-size: calc(300px * 0.025);
+  }
+
+  #title {
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 500px) {
+  body#extension {
+    font-size: calc(500px * 0.025);
+  }
+}
+
+.mdc-select .mdc-select__anchor {
+  height: 3em;
+}
+
+.mdc-select .mdc-select__selected-text {
+  padding: 6px 36px 6px 16px !important;
+  font-size: 0.95em;
+  height: 38px;
+}
+
+.mdc-select .mdc-select__dropdown-icon {
+  top: 6px;
+}
+
+.mdc-select .mdc-notched-outline {
+  min-height: 38px;
+}

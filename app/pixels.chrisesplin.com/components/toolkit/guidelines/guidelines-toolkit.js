@@ -15,6 +15,7 @@ import getEnvironment from '~/utilities/get-environment';
 import produce from 'immer';
 import styles from './guidelines.module.css';
 import useWorkspace from '~/hooks/use-workspace';
+import useWorkspaceSync from '^/hooks/use-workspace-sync';
 
 const { IS_EXTENSION, IS_BROWSER, IS_SERVER } = getEnvironment();
 
@@ -53,6 +54,8 @@ function GuidelinesToolkitWrapper() {
   );
   const xLines = workspace.guidelines?.x || DEFAULT_WORKSPACE.guidelines.x;
   const yLines = workspace.guidelines?.y || DEFAULT_WORKSPACE.guidelines.y;
+
+  useWorkspaceSync();
 
   return (
     <div

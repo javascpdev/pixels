@@ -45,7 +45,7 @@ export default function TabsProvider({ children }) {
   const resetWorkspace = useCallback(async () => {
     await updateWorkspace({ ...workspace, tabs: DEFAULT_WORKSPACE.tabs });
   }, [updateWorkspace]);
-  const workspaceTabs = useMemo(() => workspace.tabs, [workspace]);
+  const workspaceTabs = useMemo(() => workspace.tabs || DEFAULT_WORKSPACE.tabs, [workspace]);
   const value = useValue({
     refreshTabs,
     resetWorkspace,

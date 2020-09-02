@@ -1,0 +1,37 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * azo-sans-uber:
+ *   - http://typekit.com/eulas/000000000000000000014a2e
+ * azo-sans-web:
+ *   - http://typekit.com/eulas/000000000000000000013f8f
+ *
+ * © 2009-2020 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2020-05-19 14:27:45 UTC"}*/
+
+@font-face {
+  font-family: 'azo-sans-web';
+  src: url('../../public/fonts/azo-sans-web.woff2') format('woff2');
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'azo-sans-uber';
+  src: url('../../public/fonts/azo-sans-uber.woff2') format('woff2');
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.tk-azo-sans-web {
+  font-family: 'azo-sans-web', sans-serif;
+}
+.tk-azo-sans-uber {
+  font-family: 'azo-sans-uber', sans-serif;
+}

@@ -107,7 +107,7 @@ function useLocalTabs() {
       if (key == 'active') {
         updatedOffsets[key] = e.target.checked;
       } else {
-        updatedOffsets[key] = e.target.value;
+        updatedOffsets[key] = +e.target.value;
       }
 
       setLocalOffsets((localOffsets) =>
@@ -137,7 +137,7 @@ function useLocalTabs() {
 
       isDirty && (await updateWorkspaceTabs(updates));
     })();
-  }, [debouncedLocalOffsets, updateWorkspaceTabs]);
+  }, [debouncedLocalOffsets]);
 
   useEffect(() => {
     setLocalOffsets(DEFAULT_LOCAL_OFFSETS);
