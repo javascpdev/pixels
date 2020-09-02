@@ -23,5 +23,5 @@ function mountParentNode() {
 function renderIntoParentNode(nodes) {
   observeRemoval(nodes);
 
-  ReactDOM.render(<App />, nodes.rootNode);
+  ReactDOM.render(<App parentNode={nodes.parentNode} />, nodes.rootNode);
 }

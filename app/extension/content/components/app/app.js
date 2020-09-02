@@ -1,17 +1,26 @@
-import React from 'react';
-import RootProvider from '_content/components/contexts/root-context';
-import useTab from '_content/components/hooks/use-tab';
+import './app.css';
 
-export default function AppConnected() {
+import Gridlines from '+/gridlines/gridlines';
+import React from 'react';
+import RootProvider from '+/contexts/root-context';
+import useResizeObserver from 'use-resize-observer';
+import useTab from '+/hooks/use-tab';
+
+export default function AppConnected(props) {
   return (
     <RootProvider>
-      <App />
+      <App {...props} />
     </RootProvider>
   );
 }
 
-function App() {
+function App({ parentNode }) {
   const tab = useTab();
-  console.log('tab', tab);
-  return !tab?.active ? null : <h1>Content App.js</h1>;
+  const { width, height } = useResizeObserver({ ref: { current: parentNode } });
+
+  return !tab?.active ? null : (
+    <>
+      <Gridlines width={width} height={height} />
+    </>
+  );
 }

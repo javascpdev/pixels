@@ -1,4 +1,4 @@
-import { RootContext } from '_content/components/contexts/root-context';
+import { RootContext } from '+/contexts/root-context';
 import { useContext } from 'react';
 
 export default function useWorkspace() {

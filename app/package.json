@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "echo 'must cd into pixels.chrisesplin.com'",
+    "_dev": "echo 'must cd into pixels.chrisesplin.com'",
+    "dev": "cd /app/pixels.chrisesplin.com && yarn dev & cd /app/extension && yarn dev",
     "build": "cd /app/pixels.chrisesplin.com && yarn build",
     "export": "cd /app/pixels.chrisesplin.com && yarn export",
     "deploy": "cd /app/pixels.chrisesplin.com && yarn deploy",

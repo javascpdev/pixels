@@ -47,6 +47,7 @@ module.exports = (env) => ({
       '^': path.resolve(__dirname, 'components'),
       __: path.resolve(__dirname, 'components'),
       '~': path.resolve(__dirname, '../pixels.chrisesplin.com/components'),
+      '+': path.resolve(__dirname, '../extension/content/components'),
       _background: path.resolve(__dirname, '../extension/background'),
       _content: path.resolve(__dirname, '../extension/content'),
       react: path.resolve(__dirname, 'node_modules/react'),

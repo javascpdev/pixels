@@ -2,7 +2,14 @@ const ENVIRONMENT = typeof $ENVIRONMENT == 'string' ? $ENVIRONMENT : process.env
 
 export default {
   ENVIRONMENT,
-  CONTENT: { EL_ID: '__PIXELS_ROOT__' },
+  CONTENT: {
+    COLORS: { RULER_TICK: 'black', GUIDELINE: '#004c8c' },
+    EL_ID: '__PIXELS_ROOT__',
+    TAB_OFFSET: {
+      x: 0,
+      y: 0,
+    },
+  },
   META: {
     IS_DEVELOPMENT: ENVIRONMENT == 'development',
     IS_PRODUCTION: ENVIRONMENT == 'production',
