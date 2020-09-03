@@ -1,11 +1,14 @@
 const LOCALFORAGE_PREFIX = 'pixels';
 const BUILD_DATE = new Date();
 const BUILD_TIMESTAMP = `${BUILD_DATE.toLocaleDateString()} ${BUILD_DATE.toLocaleTimeString()}`;
+const { version: VERSION } = require('../../package.json');
 
+console.info('version:', VERSION);
 console.info('build:', BUILD_TIMESTAMP);
 
 export default {
-  BUILD_TIMESTAMP: `${BUILD_DATE.toLocaleDateString()} ${BUILD_DATE.toLocaleTimeString()}`,
+  VERSION,
+  BUILD_TIMESTAMP,
   COLORS: {
     MDC_THEME_PRIMARY: 'black',
     MDC_THEME_SECONDARY_TEXT: 'white',

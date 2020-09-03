@@ -64,7 +64,7 @@ function UserDrawer({ isOpen, onClose }) {
         </DrawerContent>
       </div>
       <div className="flex" />
-      <span className={styles.timestamp}>{constants.BUILD_TIMESTAMP}</span>
+      <span className={styles.version}>v{constants.VERSION}</span>
     </Drawer>
   );
 }

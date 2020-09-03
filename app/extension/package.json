@@ -22,6 +22,7 @@
     "firebase": "^7.19.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "replace-in-file": "^6.1.0",
     "style-loader": "1.2.1",
     "use-resize-observer": "^6.1.0",
     "webextension-polyfill": "^0.6.0",
