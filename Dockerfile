@@ -1,5 +1,7 @@
 FROM mhart/alpine-node:10
 
+RUN apk add --update zip
+
 WORKDIR /app/extension
 COPY ./app/extension/package.json package.json
 COPY ./app/extension/yarn.lock yarn.lock
@@ -17,8 +19,6 @@ RUN yarn install --pure-lockfile --production
 
 ADD ./app /app
 
-# RUN yarn add next --force
-
 WORKDIR /app
 
-RUN yarn && yarn ci:build
+RUN yarn ci:build

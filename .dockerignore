@@ -2,7 +2,11 @@
 bin
 dev
 
-app/.next
-app/out
-app/node_modules
-app/functions/node_modules
+app/extension/.build
+app/extension/build
+app/extension/node_modules
+
+app/pixels.chrisesplin.com/.next
+app/pixels.chrisesplin.com/out
+app/pixels.chrisesplin.com/node_modules
+app/pixels.chrisesplin.com/functions/node_modules
