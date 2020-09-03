@@ -1,6 +1,11 @@
 const LOCALFORAGE_PREFIX = 'pixels';
+const BUILD_DATE = new Date();
+const BUILD_TIMESTAMP = `${BUILD_DATE.toLocaleDateString()} ${BUILD_DATE.toLocaleTimeString()}`;
+
+console.info('build:', BUILD_TIMESTAMP);
 
 export default {
+  BUILD_TIMESTAMP: `${BUILD_DATE.toLocaleDateString()} ${BUILD_DATE.toLocaleTimeString()}`,
   COLORS: {
     MDC_THEME_PRIMARY: 'black',
     MDC_THEME_SECONDARY_TEXT: 'white',

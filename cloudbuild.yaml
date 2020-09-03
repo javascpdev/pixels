@@ -1,26 +1,38 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us.gcr.io/$PROJECT_ID/pixels:latest', '.']
+    entrypoint: 'bash'
+    args: ['-c', 'docker pull us.gcr.io/$PROJECT_ID/pixels:latest || exit 0']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      [
+        'build', 
+        '-t', 
+        'us.gcr.io/$PROJECT_ID/pixels:latest', 
+        '--cache-from',
+        'us.gcr.io/$PROJECT_ID/pixels:latest', 
+        '.'
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us.gcr.io/$PROJECT_ID/pixels:latest']
   - name: 'us.gcr.io/$PROJECT_ID/pixels:latest'
     dir: '/app'
     args: ['yarn', 'ci:config']
-    env:
-      - 'ALGOLIA_PREFIX=$_ALGOLIA_PREFIX'
-      - 'ALGOLIA_PRIVATE_API_KEY=$_ALGOLIA_PRIVATE_API_KEY'
-      - 'FIREBASE_TOKEN=$_FIREBASE_TOKEN'
-      - 'FIREBASE_PROJECT=$_FIREBASE_PROJECT'
-      - 'SERVICE_ACCOUNT_BASE64=$_SERVICE_ACCOUNT_BASE64'
-      - 'FIREBASE_APPLICATION_CREDENTIALS=$_FIREBASE_APPLICATION_CREDENTIALS'
-      - 'GOOGLE_APPLICATION_CREDENTIALS=$_GOOGLE_APPLICATION_CREDENTIALS'
-      - 'GOOGLE_BUCKET_TEMP=$_GOOGLE_BUCKET_TEMP'
-      - 'GOOGLE_SERVICE_ACCOUNT_BASE64=$_GOOGLE_SERVICE_ACCOUNT_BASE64'
-      - 'IMGUR_CLIENT_ID=$_IMGUR_CLIENT_SECRET'
-      - 'IMGUR_CLIENT_SECRET=$_IMGUR_CLIENT_ID'
   - name: 'us.gcr.io/$PROJECT_ID/pixels:latest'
     dir: '/app'
     args: ['yarn', 'ci:deploy']
-    env:
-      - 'FIREBASE_TOKEN=$_FIREBASE_TOKEN'
-      - 'FIREBASE_PROJECT=$_FIREBASE_PROJECT'
 images: ['us.gcr.io/$PROJECT_ID/pixels:latest']
+options:
+  env:
+    - 'ALGOLIA_PREFIX=$_ALGOLIA_PREFIX'
+    - 'ALGOLIA_PRIVATE_API_KEY=$_ALGOLIA_PRIVATE_API_KEY'
+    - 'EXTENSION_PEM_BASE64=$_EXTENSION_PEM_BASE64'
+    - 'FIREBASE_APPLICATION_CREDENTIALS=$_FIREBASE_APPLICATION_CREDENTIALS'
+    - 'FIREBASE_PROJECT=$_FIREBASE_PROJECT'
+    - 'FIREBASE_TOKEN=$_FIREBASE_TOKEN'
+    - 'GOOGLE_APPLICATION_CREDENTIALS=$_GOOGLE_APPLICATION_CREDENTIALS'
+    - 'GOOGLE_BUCKET_TEMP=$_GOOGLE_BUCKET_TEMP'
+    - 'GOOGLE_SERVICE_ACCOUNT_BASE64=$_GOOGLE_SERVICE_ACCOUNT_BASE64'
+    - 'IMGUR_CLIENT_ID=$_IMGUR_CLIENT_SECRET'
+    - 'IMGUR_CLIENT_SECRET=$_IMGUR_CLIENT_SECRET'
+    - 'SERVICE_ACCOUNT_BASE64=$_SERVICE_ACCOUNT_BASE64'
 timeout: 3600s

@@ -63,6 +63,8 @@ function UserDrawer({ isOpen, onClose }) {
           <List onClick={onClose}>{IS_EXTENSION ? <ExtensionListItems /> : <WebListItems />}</List>
         </DrawerContent>
       </div>
+      <div className="flex" />
+      <span className={styles.timestamp}>{constants.BUILD_TIMESTAMP}</span>
     </Drawer>
   );
 }

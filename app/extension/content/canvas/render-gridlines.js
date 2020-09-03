@@ -2,12 +2,16 @@ import clearCanvas from './clear-canvas';
 import constants from '^/constants';
 import drawLines from './draw-lines';
 
-console.log('constants', constants);
-
-export default ({ color = constants.CONTENT.COLORS.GUIDELINE, ctx, guidelines, offsets }) => {
+export default ({
+  color = constants.CONTENT.COLORS.GUIDELINE,
+  ctx,
+  xCoordinates,
+  yCoordinates,
+  offsets,
+}) => {
   const { width, height } = ctx.canvas;
-  const horizontalLines = getHorizontalLines(width, guidelines.y, offsets);
-  const verticalLines = getVerticalLines(height, guidelines.x, offsets);
+  const horizontalLines = getHorizontalLines(width, yCoordinates, offsets);
+  const verticalLines = getVerticalLines(height, xCoordinates, offsets);
   const options = { strokeStyle: color, lineDashes: [5.5, 3.5], lineWidth: 1 };
 
   clearCanvas(ctx);

@@ -1,4 +1,3 @@
-import Firebase from '~/app/firebase';
 import constants from '~/constants';
 import { useEffect } from 'react';
 import useFirebase from '~/hooks/use-firebase';
@@ -16,5 +15,5 @@ export default function SignOut() {
     }
   }, [firebase, redirect]);
 
-  return <Firebase />;
+  return null;
 }

@@ -1,0 +1,1 @@
+zip -r /app/pixels.chrisesplin.com/public/extension/pixels.zip /app/extension/build

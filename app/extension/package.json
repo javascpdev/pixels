@@ -1,9 +1,12 @@
 {
   "scripts": {
     "dev": "yarn webpack:watch",
-    "build": "yarn webpack",
-    "webpack": "webpack --config webpack.config.js --mode production",
-    "webpack:watch": "webpack --config webpack.config.js --watch --write --mode development --env.development"
+    "pack-extension": "sh bin/write-pem.sh && node bin/pack-extension.js",
+    "zip": "sh bin/zip-extension.sh",
+    "build": "yarn webpack && yarn pack-extension && yarn zip",
+    "deploy": "echo 'extension deploy is TBD'",
+    "webpack": "NODE_ENV=production webpack --config config/webpack.config.js ",
+    "webpack:watch": "webpack --config config/webpack.development.config.js --watch --write"
   },
   "dependencies": {
     "@babel/core": "7.11.4",
@@ -13,6 +16,7 @@
     "@xstate/react": "^0.8.1",
     "babel-loader": "8.1.0",
     "copy-webpack-plugin": "^6.0.3",
+    "crx": "^5.0.1",
     "css-loader": "^4.2.2",
     "file-loader": "^6.0.0",
     "firebase": "^7.19.0",

@@ -31,3 +31,5 @@ yarn-error.log*
 
 .firebase
 *.log
+
+public/extension/*

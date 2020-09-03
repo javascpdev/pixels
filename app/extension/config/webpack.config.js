@@ -1,9 +1,9 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
-const ReloadPlugin = require('./reload-plugin');
 const webpack = require('webpack');
 
-module.exports = (env) => ({
+module.exports = {
+  mode: 'production',
   module: {
     rules: [
       {
@@ -44,31 +44,25 @@ module.exports = (env) => ({
   },
   resolve: {
     alias: {
-      '^': path.resolve(__dirname, 'components'),
-      __: path.resolve(__dirname, 'components'),
-      '~': path.resolve(__dirname, '../pixels.chrisesplin.com/components'),
-      '+': path.resolve(__dirname, '../extension/content/components'),
-      _background: path.resolve(__dirname, '../extension/background'),
-      _content: path.resolve(__dirname, '../extension/content'),
-      react: path.resolve(__dirname, 'node_modules/react'),
-      '@rmwc': path.resolve(__dirname, '../pixels.chrisesplin.com/node_modules/@rmwc'),
-      '@material': path.resolve(__dirname, '../pixels.chrisesplin.com/node_modules/@material'),
+      '^': path.resolve(__dirname, '../components'),
+      __: path.resolve(__dirname, '../components'),
+      '~': path.resolve(__dirname, '../../pixels.chrisesplin.com/components'),
+      '+': path.resolve(__dirname, '../../extension/content/components'),
+      _background: path.resolve(__dirname, '../../extension/background'),
+      _content: path.resolve(__dirname, '../../extension/content'),
+      react: path.resolve(__dirname, '../node_modules/react'),
+      '@rmwc': path.resolve(__dirname, '../../pixels.chrisesplin.com/node_modules/@rmwc'),
+      '@material': path.resolve(__dirname, '../../pixels.chrisesplin.com/node_modules/@material'),
     },
   },
   entry: {
-    index: './components/index.js',
-    background: './background/background.js',
-    content: './content/content.js',
+    index: path.resolve(__dirname, '../components/index.js'),
+    background: path.resolve(__dirname, '../background/background.js'),
+    content: path.resolve(__dirname, '../content/content.js'),
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'build'),
-  },
-  devServer: {
-    writeToDisk: true,
-    watchContentBase: true,
-    sockPort: 41000,
-    transportMode: 'ws',
+    path: path.resolve(__dirname, '../build'),
   },
   devtool: 'cheap-module-source-map',
   plugins: [
@@ -81,12 +75,11 @@ module.exports = (env) => ({
         },
       ],
     }),
-    new ReloadPlugin(),
     new webpack.DefinePlugin({
-      $ENVIRONMENT: env.development ? 'development' : 'production',
+      $ENVIRONMENT: process.env.NODE_ENV,
     }),
   ],
   optimization: {
     minimize: false,
   },
-});
+};

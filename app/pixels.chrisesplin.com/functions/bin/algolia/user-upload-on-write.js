@@ -8,7 +8,7 @@ const userUploadOnWrite = require('../../src/firestore/user-upload.on-write.js')
 
   const result = await userUploadOnWrite(change, { params });
 
-  console.log('result', result);
+  console.info('result', result);
 
   process.exit();
 })();

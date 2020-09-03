@@ -5,7 +5,7 @@ import BackButton from '~/top-bar/back-button';
 import FilesUploadForm from '~/toolkit/files/files-upload-form';
 import { LinearProgress } from '@rmwc/linear-progress';
 import Title from '~/top-bar/title';
-import constants from '../../../components/toolkit/guidelines/node_modules/~/constants';
+import constants from '~/constants';
 import localforage from '~/localforage';
 import styles from '~/css/upload.module.css';
 import useParams from '~/hooks/use-params';

@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
+    "ci:build": "yarn build && yarn export",
+    "ci:deploy": "yarn deploy",
     "deploy": "firebase deploy --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:hosting": "firebase deploy --only hosting --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",
     "deploy:firestore": "firebase deploy --only firestore --token $FIREBASE_TOKEN --project=$FIREBASE_PROJECT",

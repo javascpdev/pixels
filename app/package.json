@@ -1,17 +1,17 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "pixels",
+  "version": "2.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
-    "_dev": "echo 'must cd into pixels.chrisesplin.com'",
     "dev": "cd /app/pixels.chrisesplin.com && yarn dev & cd /app/extension && yarn dev",
-    "build": "cd /app/pixels.chrisesplin.com && yarn build",
-    "export": "cd /app/pixels.chrisesplin.com && yarn export",
-    "deploy": "cd /app/pixels.chrisesplin.com && yarn deploy",
-    "ci:build": "yarn build && yarn export",
+    "ext:build": "cd /app/extension && yarn build",
+    "ext:deploy": "cd /app/extension && yarn deploy",
+    "web:build": "cd /app/pixels.chrisesplin.com && yarn build",
+    "web:deploy": "cd /app/pixels.chrisesplin.com && yarn ci:deploy",
+    "ci:build": "yarn ext:build && yarn web:build",
     "ci:config": "yarn ci:service-account && cd /app/pixels.chrisesplin.com && yarn deploy:functions:config",
-    "ci:deploy": "yarn deploy",
+    "ci:deploy": "yarn ext:deploy && yarn web:deploy",
     "ci:service-account": "sh pixels/bin/service-account.sh",
     "_": ""
   }

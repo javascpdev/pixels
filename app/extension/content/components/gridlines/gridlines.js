@@ -13,10 +13,13 @@ export default function Gridlines({ width, height }) {
   useEffect(() => {
     const ctx = canvasRef.current.getContext('2d');
     const offsets = { x: tab.x, y: tab.y };
+    const xCoordinates = workspace.guidelines.x.map((g) => +g.value);
+    const yCoordinates = workspace.guidelines.y.map((g) => +g.value);
 
     renderGridlines({
       ctx,
-      guidelines: workspace.guidelines,
+      xCoordinates,
+      yCoordinates,
       offsets,
     });
   }, [width, height, tab, workspace]);

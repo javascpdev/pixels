@@ -1,0 +1,1 @@
+echo $EXTENSION_PEM_BASE64 | base64 -d > /app/extension/bin/extension.pem || true
