@@ -1,7 +1,8 @@
 #! bin/sh
 echo "Exporting firebase functions config..."
+export PATH="$(yarn global bin):$PATH"
 
-npx firebase functions:config:set \
+firebase functions:config:set \
   algolia.admin_api_key=$ALGOLIA_PRIVATE_API_KEY \
   algolia.prefix=$ALGOLIA_PREFIX \
   imgur.client_id=$IMGUR_CLIENT_ID \

@@ -1,18 +1,18 @@
 {
   "name": "pixels",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "cd /app/pixels.chrisesplin.com && yarn dev & cd /app/extension && yarn dev",
     "ext:build": "cd /app/extension && yarn build",
     "ext:deploy": "cd /app/extension && yarn deploy",
-    "web:build": "cd /app/pixels.chrisesplin.com && yarn build",
+    "web:build": "cd /app/pixels.chrisesplin.com && yarn ci:build",
     "web:deploy": "cd /app/pixels.chrisesplin.com && yarn ci:deploy",
-    "ci:build": "yarn ext:build && yarn web:build",
+    "ci:build": "yarn ext:build",
     "ci:config": "yarn ci:service-account && cd /app/pixels.chrisesplin.com && yarn deploy:functions:config",
-    "ci:deploy": "yarn ext:deploy && yarn web:deploy",
-    "ci:service-account": "sh pixels/bin/service-account.sh",
+    "ci:deploy": "yarn ext:deploy && yarn ci:service-account && yarn web:deploy",
+    "ci:service-account": "sh pixels.chrisesplin.com/bin/service-account.sh",
     "_": ""
   }
 }

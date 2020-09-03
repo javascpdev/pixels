@@ -2,6 +2,8 @@ FROM mhart/alpine-node:10
 
 RUN apk add --update zip
 
+RUN yarn global add firebase-tools
+
 WORKDIR /app/extension
 COPY ./app/extension/package.json package.json
 COPY ./app/extension/yarn.lock yarn.lock
@@ -21,4 +23,6 @@ ADD ./app /app
 
 WORKDIR /app
 
-RUN yarn ci:build
+RUN yarn web:build
+
+CMD [ "yarn", "ci:build" ]
