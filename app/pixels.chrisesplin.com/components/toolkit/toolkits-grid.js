@@ -20,9 +20,9 @@ export default function ToolkitsGrid() {
     <div className={styles.toolkits}>
       <Toolkit
         alt="imgur logo"
-        description="Imgur power tools"
+        description="Imgur"
         href={constants.ROUTES.TOOLKIT.IMGUR.ROOT}
-        src="/images/imgur/imgur-logotype.svg"
+        src="/images/imgur/imgur-favicon-152.png"
         view={extensionConstants.VIEWS.IMGUR.ROOT}
       />
       <Toolkit

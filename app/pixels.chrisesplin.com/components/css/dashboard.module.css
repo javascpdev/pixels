@@ -24,7 +24,8 @@
 }
 
 .toolkit img {
-  max-width: 100%;
+  max-width: 3em;
+  max-height: 3em;
 }
 
 .gridWrapper {

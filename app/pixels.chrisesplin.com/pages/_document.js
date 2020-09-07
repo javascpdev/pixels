@@ -13,7 +13,7 @@ export default class CustomDocument extends Document {
           <meta name="theme_color" content={constants.META.THEME_COLOR} />
 
           <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-          <link rel="icon" href="/images/favicon.ico" />
+          <link rel="icon" href="/images/favicon.png" />
           <link rel="apple-touch-icon" href="/images/icons/icon-192.png" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="stylesheet" href="https://use.typekit.net/zgw6lpd.css" />
