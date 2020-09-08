@@ -11,18 +11,22 @@ export default function Gridlines({ width, height }) {
   const dpr = window.devicePixelRatio;
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext('2d');
-    const offsets = { x: tab.x, y: tab.y };
-    const xCoordinates = workspace.guidelines.x.map((g) => +g.value);
-    const yCoordinates = workspace.guidelines.y.map((g) => +g.value);
+    if (workspace) {
+      const ctx = canvasRef.current.getContext('2d');
+      const offsets = { x: tab.x, y: tab.y };
+      const xCoordinates = workspace.guidelines.x.map((g) => +g.value);
+      const yCoordinates = workspace.guidelines.y.map((g) => +g.value);
 
-    renderGridlines({
-      ctx,
-      xCoordinates,
-      yCoordinates,
-      offsets,
-    });
+      renderGridlines({
+        ctx,
+        xCoordinates,
+        yCoordinates,
+        offsets,
+      });
+    }
   }, [width, height, tab, workspace]);
 
-  return <canvas width={width * dpr} height={height * dpr} ref={canvasRef} />;
+  return (
+    <canvas style={{ width, height }} width={width * dpr} height={height * dpr} ref={canvasRef} />
+  );
 }

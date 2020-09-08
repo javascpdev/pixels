@@ -8,8 +8,3 @@
   z-index: 1000000;
   pointer-events: none;
 }
-
-#__PIXELS_ROOT__ canvas {
-  height: 100vh;
-  width: 100vw;
-}

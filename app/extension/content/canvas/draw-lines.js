@@ -5,9 +5,9 @@ import constants from '~/constants';
  *
  * https://stackoverflow.com/questions/8696631/canvas-drawings-like-lines-are-blurry
  */
+const STRADDLE = 0.5;
 export default function drawLines(ctx, lines, options = {}) {
   const { strokeStyle, lineDashes, lineWidth } = options;
-  const straddle = 0.5;
 
   ctx.strokeStyle = strokeStyle || constants.CONTENT.COLORS.RULER_TICK;
   ctx.lineWidth = lineWidth || 1;
@@ -16,8 +16,8 @@ export default function drawLines(ctx, lines, options = {}) {
 
   lines.forEach(({ startX, startY, endX, endY }) => {
     ctx.beginPath();
-    ctx.moveTo(startX - straddle, startY - straddle);
-    ctx.lineTo(endX - straddle, endY - straddle);
+    ctx.moveTo(startX - STRADDLE, startY - STRADDLE);
+    ctx.lineTo(endX - STRADDLE, endY - STRADDLE);
     ctx.stroke();
     ctx.closePath();
   });
