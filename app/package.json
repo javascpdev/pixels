@@ -11,7 +11,7 @@
     "web:deploy": "cd /app/pixels.chrisesplin.com && yarn ci:deploy",
     "ci:build": "yarn ext:build",
     "ci:config": "yarn ci:service-account && cd /app/pixels.chrisesplin.com && yarn deploy:functions:config",
-    "ci:deploy": "yarn ext:deploy && yarn ci:service-account && yarn web:deploy",
+    "ci:deploy": "yarn ext:build && yarn ext:deploy && yarn ci:service-account && yarn web:deploy",
     "ci:service-account": "sh pixels.chrisesplin.com/bin/service-account.sh",
     "_": ""
   }
