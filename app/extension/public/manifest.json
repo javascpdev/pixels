@@ -26,5 +26,5 @@
   "manifest_version": 2,
   "name": "Pixels",
   "permissions": ["activeTab", "tabs"],
-  "version": "1.0"
+  "version": "2.0.0"
 }
