@@ -1,9 +1,8 @@
 {
   "scripts": {
     "dev": "yarn webpack:watch",
-    "pack-extension": "sh bin/write-pem.sh && mkdir /app/pixels.chrisesplin.com/public/extension || true && node bin/pack-extension.js",
-    "zip": "sh bin/zip-extension.sh",
-    "build": "yarn webpack && yarn pack-extension && yarn zip",
+    "pack-extension": "sh bin/pack-extension.sh",
+    "build": "yarn webpack && yarn pack-extension",
     "deploy": "echo 'extension deploy is TBD'",
     "webpack": "NODE_ENV=production webpack --config config/webpack.config.js ",
     "webpack:watch": "webpack --config config/webpack.development.config.js --watch --write"
