@@ -104,7 +104,7 @@ function FileActions({ deleteUploads, deselectAll, selected, uploads }) {
     setProgress(1);
   }, [deleteUploads, deselectAll, selected, selectedUploads, setProgress]);
   const onCopyClick = useCallback(() => {
-    const downloadURLs = selectedUploads.map((u) => u.downloadURL);
+    const downloadURLs = selectedUploads.map((u) => `![${u.tags.join(' ')}](${u.downloadURL})`);
     const copyString = downloadURLs.join('\n\n');
 
     copyToClipboard(copyString);
