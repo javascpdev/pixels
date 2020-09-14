@@ -16,6 +16,9 @@
 }
 
 .menus menu:first-child {
-  flex: 1;
   justify-content: flex-start;
+}
+
+.menus menu:nth-child(2) {
+  flex: 1;
 }
