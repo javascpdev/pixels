@@ -32,10 +32,11 @@ export default function FilesImages({ deleteUploads, isSearching, query, uploads
       ) : (
         <ul className={styles.imageGrid}>
           {images.map((image, i) => {
-            const isSelected = selected.has(image.__id);
+            const imageId = image.__id || image.objectID;
+            const isSelected = selected.has(imageId);
 
             return (
-              <li key={`${image.__id}-${i}`} onClick={getOnClick(image.__id)}>
+              <li key={`${imageId}-${i}`} onClick={getOnClick(imageId)}>
                 <GalleryImage
                   alt={image.metadata.name}
                   bytes={image.totalBytes}
@@ -110,7 +111,7 @@ function FilesActionMenu({ deleteUploads, deselectAll, selected, uploads }) {
                 onClick={onDeleteClick}
               />
             </>,
-            el
+            el,
           )
         : null}
     </>
