@@ -36,7 +36,7 @@ export default function useMultiSelect({ ids }) {
         select(id);
       }
     },
-    [ids, deselect, select, selected]
+    [ids, deselect, select, selected],
   );
 
   useKeyup(
@@ -47,7 +47,7 @@ export default function useMultiSelect({ ids }) {
         setSelected(new Set(ids));
       }
     },
-    [deselectAll, ids, setSelected]
+    [deselectAll, ids, setSelected],
   );
 
   return useValue({ deselectAll, getOnClick, selected });
@@ -80,7 +80,6 @@ function getSelected({ id, ids, selected }) {
 }
 
 function shouldShiftSelect({ i, ids, index, firstSelectedIndex, lastSelectedIndex }) {
-  const id = ids[i];
   const isAfterFirst = i > firstSelectedIndex;
   const isBeforeLast = i < lastSelectedIndex;
   const isBeforeIndex = i <= index;

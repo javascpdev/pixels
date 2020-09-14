@@ -43,3 +43,14 @@
 .wrapper em {
   color: var(--mdc-theme-secondary);
 }
+
+.imageControls {
+  position: absolute;
+  top: 0;
+  right: 13px;
+  left: 12px;
+
+  display: flex;
+
+  background: rgba(255, 255, 255, 0.75);
+}

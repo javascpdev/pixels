@@ -21,6 +21,7 @@ export default function FilesImages({ deleteUploads, isSearching, query, uploads
   return (
     <>
       <FilesActionMenu
+        targetId="action-menu"
         deleteUploads={deleteUploads}
         deselectAll={deselectAll}
         selected={selected}
@@ -34,10 +35,21 @@ export default function FilesImages({ deleteUploads, isSearching, query, uploads
           {images.map((image, i) => {
             const imageId = image.__id || image.objectID;
             const isSelected = selected.has(imageId);
+            const showImageControls = isSelected && selected.size == 1;
 
             return (
               <li key={`${imageId}-${i}`} onClick={getOnClick(imageId)}>
+                {showImageControls && (
+                  <FilesActionMenu
+                    targetId={`image-controls-${imageId}`}
+                    deleteUploads={deleteUploads}
+                    deselectAll={deselectAll}
+                    selected={selected}
+                    uploads={uploads}
+                  />
+                )}
                 <GalleryImage
+                  imageId={imageId}
                   alt={image.metadata.name}
                   bytes={image.totalBytes}
                   isSearching={isSearching}
@@ -58,8 +70,13 @@ function EmptyState() {
   return <h2 style={{ textAlign: 'center' }}>Upload an image to get started</h2>;
 }
 
-function FilesActionMenu({ deleteUploads, deselectAll, selected, uploads }) {
-  const el = typeof window != 'undefined' && window.document.getElementById('action-menu');
+function FilesActionMenu({ targetId, ...props }) {
+  const el = typeof window != 'undefined' && window.document.getElementById(targetId);
+
+  return el ? ReactDOM.createPortal(<FileActions {...props} />, el) : null;
+}
+
+function FileActions({ deleteUploads, deselectAll, selected, uploads }) {
   const alert = useAlert();
   const [progress, setProgress] = useState(1);
   const selectedUploads = useMemo(() => uploads.filter((u) => selected.has(u.__id)), [
@@ -100,20 +117,14 @@ function FilesActionMenu({ deleteUploads, deselectAll, selected, uploads }) {
   return (
     <>
       <GlobalProgress progress={progress} show={progress < 1 || undefined} />
-      {el && selected.size
-        ? ReactDOM.createPortal(
-            <>
-              <IconButton icon={<HighlightOffSvg />} onClick={deselectAll} />
-              <IconButton icon={<ContentCopySvg />} onClick={onCopyClick} />
-              <div className="flex" />
-              <IconButton
-                icon={<DeleteSvg fill="var(--color-warning)" />}
-                onClick={onDeleteClick}
-              />
-            </>,
-            el,
-          )
-        : null}
+      {selected.size ? (
+        <>
+          <IconButton icon={<HighlightOffSvg />} onClick={deselectAll} />
+          <IconButton icon={<ContentCopySvg />} onClick={onCopyClick} />
+          <div className="flex" />
+          <IconButton icon={<DeleteSvg fill="var(--color-warning)" />} onClick={onDeleteClick} />
+        </>
+      ) : null}
     </>
   );
 }

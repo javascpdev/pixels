@@ -3,7 +3,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import getMegabytes from '~/utilities/get-megabytes';
 import styles from './gallery-image.module.css';
 
-export default function GalleryImage({ alt, bytes, isSearching, isSelected, src, tags = [] }) {
+export default function GalleryImage({
+  alt,
+  bytes,
+  imageId,
+  isSearching,
+  isSelected,
+  src,
+  tags = [],
+}) {
   const imgRef = useRef();
   const isIntersecting = useIsIntersecting({ imgRef });
   const style = useMemo(() => ({ backgroundImage: isIntersecting ? `url(${src})` : '' }), [
@@ -13,6 +21,7 @@ export default function GalleryImage({ alt, bytes, isSearching, isSelected, src,
 
   return (
     <div className={styles.wrapper} data-is-searching={isSearching} data-is-selected={isSelected}>
+      <div id={`image-controls-${imageId}`} className={styles.imageControls} />
       <Tags bytes={bytes} tags={tags} />
 
       <img
@@ -33,7 +42,7 @@ function Tags({ bytes, tags }) {
           <li key={`tag-${tag.value}`} dangerouslySetInnerHTML={{ __html: tag.value }} />
         ) : (
           <li key={`tag-${tag}`}>{tag}</li>
-        )
+        ),
       )}
       <li>{getMegabytes(bytes)}mb</li>
     </ul>
@@ -50,7 +59,7 @@ function useIsIntersecting({ imgRef }) {
 
         entry && entry.isIntersecting && setIsIntersecting(entry.isIntersecting);
       },
-      { threshold: 0 }
+      { threshold: 0 },
     );
 
     observer.observe(imgRef.current);
